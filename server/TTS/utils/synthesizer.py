@@ -248,6 +248,9 @@ class Synthesizer(nn.Module):
             wav = wav.cpu().numpy()
         if isinstance(wav, list):
             wav = np.array(wav)
+        print(' > len wav nparray BEFORE CUTTING:', len(wav))
+        wav = wav[:-10_000]
+        print(' > len wav nparray AFTER:', len(wav))
         save_wav(wav=wav, path=path, sample_rate=self.output_sample_rate, pipe_out=pipe_out)
 
     def voice_conversion(self, source_wav: str, target_wav: str) -> List[int]:
