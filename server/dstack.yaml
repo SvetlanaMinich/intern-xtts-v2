@@ -1,0 +1,18 @@
+version: "0.1"
+
+tasks:
+  run-on-vastai:
+    image: pytorch/pytorch:latest
+    gpu: true
+    provider: vastai
+    script: |
+      python server_async.py
+    files:
+      - .
+    requirements:
+      gpus: 1                # 1 GPU
+      gpu_name: "RTX 3070"    # Specific GPU model
+      memory: 16GB            # Minimum 32GB of RAM
+      max_price: 0.12          # Max price of $/hour
+      min_duration: 6h        # At least 6 hours of availability
+      bandwidth: 100MB/s      # At least 100MB/s of network bandwidth

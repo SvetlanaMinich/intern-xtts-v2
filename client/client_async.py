@@ -5,8 +5,6 @@ from AudioConverter_cl import AudioConverter
 
 BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
-# HOST = '104.15.30.249'
-# PORT = 45482
 HOST = 'localhost'
 PORT = 8080
 
@@ -166,6 +164,12 @@ async def run_client(client_id:int) -> None:
 
 if __name__ == '__main__':
     client_id = 12
-    # C:\intern\socket_tts2\segments\server\voices_test\Alessia_Cara.mp3
+    # C:\intern\xtts-2\client\voice_samples\en\KENDALL JENNER.mp3
+    # C:\intern\xtts-2\client\voice_samples\ru\01_cutted.mp3
+    
     # path_to_save_file = r'C:\intern\xtts-2\res\en'
+
+    # The cat jumped swiftly onto the wooden windowsill.
+    # She picked up her book and settled into the cozy chair.
+    # He smiled as he watched the children play in the park.
     asyncio.run(run_client(client_id=client_id))

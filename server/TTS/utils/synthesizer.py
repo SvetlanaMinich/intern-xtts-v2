@@ -248,10 +248,11 @@ class Synthesizer(nn.Module):
             wav = wav.cpu().numpy()
         if isinstance(wav, list):
             wav = np.array(wav)
-        print(' > len wav nparray BEFORE CUTTING:', len(wav))
-        wav = wav[:-10_000]
-        print(' > len wav nparray AFTER:', len(wav))
-        save_wav(wav=wav, path=path, sample_rate=self.output_sample_rate, pipe_out=pipe_out)
+        # print(' > len wav nparray BEFORE CUTTING:', len(wav))
+        # wav = wav[:-10_000]
+        # print(' > len wav nparray AFTER:', len(wav))
+        # save_wav(wav=wav, path=path, sample_rate=self.output_sample_rate, pipe_out=pipe_out)
+        return wav
 
     def voice_conversion(self, source_wav: str, target_wav: str) -> List[int]:
         output_wav = self.vc_model.voice_conversion(source_wav, target_wav)
@@ -441,7 +442,7 @@ class Synthesizer(nn.Module):
                     waveform = trim_silence(waveform, self.tts_model.ap)
 
                 wavs += list(waveform)
-                wavs += [0] * 10000
+                # wavs += [0] * 10000
         else:
             # get the speaker embedding or speaker id for the reference wav file
             reference_speaker_embedding = None
