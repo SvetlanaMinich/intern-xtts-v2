@@ -164,7 +164,8 @@ async def run_client(client_id:int) -> None:
 
 if __name__ == '__main__':
     client_id = 12
-    # C:\intern\xtts-2\client\voice_samples\en\KENDALL JENNER.mp3
+    # C:\intern\xtts-2\voice_samples\en\KENDALL JENNER.mp3
+    # C:\intern\xtts-2\server\def.mp3
     # C:\intern\xtts-2\client\voice_samples\ru\01_cutted.mp3
     
     # path_to_save_file = r'C:\intern\xtts-2\res\en'
@@ -172,4 +173,15 @@ if __name__ == '__main__':
     # The cat jumped swiftly onto the wooden windowsill.
     # She picked up her book and settled into the cozy chair.
     # He smiled as he watched the children play in the park.
+    # Hello, this is a test.
+    # The sun set behind the hills, casting a warm glow across the sky. The day slowly turned into night, and the stars began to appear, twinkling softly as the world around them quieted down for rest.
+
+    # Осенний вечер принес прохладу и легкий ветерок, листья мягко кружатся в воздухе, создавая атмосферу уюта. В домах загораются теплые огни, а люди наслаждаются спокойствием уходящего дня.
+    # Солнце скрылось за горами, окрашивая небо в оранжевый.
+    # Он улыбался, наблюдая за детьми, играющими в парке.
+
+    # Il sourit en regardant les enfants jouer dans le parc.
+    # Le soleil se couche, illuminant l'horizon rouge.
+    # En plein cœur de l'automne, les arbres se parent de teintes orangées et rouges. Le vent souffle doucement, emportant avec lui les feuilles mortes qui tourbillonnent avant de toucher le sol humide.
+
     asyncio.run(run_client(client_id=client_id))

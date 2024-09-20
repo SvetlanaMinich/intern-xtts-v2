@@ -442,7 +442,7 @@ class Synthesizer(nn.Module):
                     waveform = trim_silence(waveform, self.tts_model.ap)
 
                 wavs += list(waveform)
-                # wavs += [0] * 10000
+                wavs += [0] * 10000
         else:
             # get the speaker embedding or speaker id for the reference wav file
             reference_speaker_embedding = None

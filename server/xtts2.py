@@ -6,7 +6,8 @@ import soundfile as sf
 
 class XTTS_V2:
     def __init__(self,
-                 model_name:str='tts_models/multilingual/multi-dataset/xtts_v2') -> None:
+                #  model_name:str='tts_models/multilingual/multi-dataset/xtts_v2') -> None:
+                model_name:str='tts_models/multilingual/multi-dataset/xtts_v2') -> None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = TTS(model_name=model_name).to(device)
 
