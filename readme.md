@@ -29,6 +29,5 @@ run dstack.yaml with "dstack run run-on-vastai"
 
 
 в русском проблемы с ударением
-voice cloning is okay from english to english, then soso (tested with 25 sec)
 убрать пунктуацию в маленьких предложениях и проверить.
 

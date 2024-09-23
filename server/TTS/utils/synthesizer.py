@@ -300,6 +300,10 @@ class Synthesizer(nn.Module):
             if split_sentences:
                 print(" > Text splitted to sentences.")
                 sens = self.split_into_sentences(text)
+            
+            for i, sen in enumerate(sens):
+                if sen[-1] in '.,!?;':
+                    sens[i] = sen[:-1]
             print(sens)
 
         # handle multi-speaker
