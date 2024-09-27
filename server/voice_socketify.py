@@ -22,17 +22,15 @@ def handle_voice(ws: WebSocket, message, clients:JsonStorage=None):
     client_id = int.from_bytes(message[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
     print(f'    > Client {client_id} here')
 
-    voice_buffer_len = int.from_bytes(message[CLIENT_ID_MAX_LEN:CLIENT_ID_MAX_LEN + 4], byteorder=BYTEORDER)
-    print(f'    > Must receive {voice_buffer_len} bytes')
-
     voice_buffer = bytes()
-    voice_buffer = message[CLIENT_ID_MAX_LEN+4:]
+    voice_buffer = message[CLIENT_ID_MAX_LEN:]
+    print(f'    > Received buffer: {len(voice_buffer)}')
 
-    client_exists = clients.client_exists(client_id=client_id)
-    if client_exists:
-        clients.update_client(client_id=client_id, voice=bytes(voice_buffer))
-    else:
-        clients.add_client(client_id=client_id, voice=bytes(voice_buffer))
+    # client_exists = clients.client_exists(client_id=client_id)
+    # if client_exists:
+    #     clients.update_client(client_id=client_id, voice=bytes(voice_buffer))
+    # else:
+    #     clients.add_client(client_id=client_id, voice=bytes(voice_buffer))
 
     ws.send('done', OpCode.TEXT)  # Send completion response
     ws.end()
