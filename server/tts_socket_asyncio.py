@@ -1,5 +1,4 @@
 import asyncio
-import logging
 import json
 import os
 import aiofiles
@@ -9,27 +8,26 @@ from AudioConverter_sv import AudioConverter
 from xtts2 import XTTS_V2
 from JsonStorage import JsonStorage
 
-
 CLIENT_ID_MAX_LEN = 4
-# receive an integer that represents len of descriptional header
 FIXED_HEADER_LEN = 4
 BYTEORDER = 'little'
-HOST = '0.0.0.0'
 PORT = 8080
+HOST = '0.0.0.0'
+CHUNK_SIZE = 3000
 
 
 async def clear_buf_files(f_paths) -> None:
     for fp in f_paths:
         if fp and os.path.isfile(fp):
-            await asyncio.to_thread(os.remove, fp) # Run in a separate thread
+            await asyncio.to_thread(os.remove, fp)
             print(f'Buf result file {fp} removed')
 
 
-async def text_to_speech(tts_model:XTTS_V2, 
-                         audio_conv:AudioConverter,
-                         text:str,                         
-                         client_voice_path:str,
-                         language:str='en'):
+async def text_to_speech(tts_model: XTTS_V2,
+                         audio_conv: AudioConverter,
+                         text: str,
+                         client_voice_path: str,
+                         language: str = 'en'):
     
     result_path = os.curdir + fr'\{text[:15]}.wav'
     
@@ -38,14 +36,13 @@ async def text_to_speech(tts_model:XTTS_V2,
                             client_voice_path,
                             language,
                             result_path)
-    path_to_mp3_result = await asyncio.to_thread(audio_conv.wav_to_mp3,
-                                                 path_to_wav_file=result_path,
-                                                 path_to_res_mp3_file=result_path[:3]+'mp3')
     
-    async with aiofiles.open(path_to_mp3_result, 'rb') as voice:
+    await asyncio.to_thread(audio_conv.wav24_to_wav16, path_to_wav=result_path)
+
+    async with aiofiles.open(result_path, 'rb') as voice:
         result_voice_in_bytes = await voice.read()
 
-    await clear_buf_files([result_path, path_to_mp3_result])
+    await clear_buf_files([result_path])
 
     return result_voice_in_bytes
 
@@ -57,23 +54,25 @@ async def handle_tts(reader:asyncio.StreamReader,
                      audio_conv:AudioConverter):
     
     client_addr = writer.get_extra_info('peername')
-    
+
     client_id = await reader.read(CLIENT_ID_MAX_LEN)
     client_id = int.from_bytes(client_id, byteorder=BYTEORDER)
+    print(f'Client {client_id} here')
 
     client_exists = await clients.client_exists(client_id=client_id)
     if not client_exists:
-        async with aiofiles.open('def.mp3', 'rb') as file:
-            client_voice = await file.read()
+        async with aiofiles.open('server/def.wav', 'rb') as file:
+            client_voice_start = await file.read()
 
         await clients.add_client(client_id=client_id,
-                                 voice=client_voice)
+                                 voice=client_voice_start)
     else:
-        client_voice = await clients.get_voice_by_client_id(client_id=client_id)
+        client_voice_start = await clients.get_voice_by_client_id(client_id=client_id)
     
-    client_voice_path = await asyncio.to_thread(audio_conv.bytes_from_mp3_to_wav,
-                                                audio_bytes=client_voice,
-                                                path_to_result_wav_file=f'cl {client_id} target_voice.wav')
+
+    client_voice_path = await asyncio.to_thread(audio_conv.bytes_to_wav,
+                                                audiobytes=client_voice_start,
+                                                res_path=f'cl {client_id} target_voice.wav')
     
     while True:
         # reading json-header len
@@ -100,30 +99,19 @@ async def handle_tts(reader:asyncio.StreamReader,
         # reading content
         data_to_proceed = dict()
         text_len = header['Length_text']
-        voice_len = header['Length_voice']
 
         received_text = await reader.read(text_len)
         data_to_proceed['text'] = received_text.decode(header['Encoding'])
 
-        if voice_len != 0:
-            client_voice = bytes()
-            if voice_len > 3_000:
-                    chunk_size = 3_000
-                    while len(client_voice) < voice_len:
-                        received_voice = await reader.read(chunk_size)
-                        client_voice += received_voice
-            else:
-                received_voice = await reader.read(voice_len)
-                client_voice = received_voice
-                
-            await clients.update_client(client_id=client_id, voice=client_voice)
-            
-            client_voice_path = await asyncio.to_thread(audio_conv.bytes_from_mp3_to_wav,
-                                                        audio_bytes=client_voice,
-                                                        path_to_result_wav_file=f'cl {client_id} target_voice.wav')
-        
         print(f'Data from client {client_id} from {client_addr} received')
         
+        client_voice = await clients.get_voice_by_client_id(client_id=client_id)
+        if client_voice != client_voice_start:
+            client_voice_path = await asyncio.to_thread(audio_conv.bytes_to_wav,
+                                                        audiobytes=client_voice_start,
+                                                        res_path=f'cl {client_id} target_voice.wav')
+            print(f'Clients {client_id} voice changed')
+
         res_in_bytes = await text_to_speech(tts_model=tts_model,
                                             audio_conv=audio_conv,
                                             text=data_to_proceed['text'],
@@ -136,7 +124,7 @@ async def handle_tts(reader:asyncio.StreamReader,
         await writer.drain()
         print(f'\n\nResult bin_file len for client {client_id} is {res_in_bytes_len}\n\n')
 
-        chunk_size = 1024
+        chunk_size = 3000
         for i in range(0, res_in_bytes_len, chunk_size):
             if res_in_bytes_len - i < chunk_size:
                 chunk = res_in_bytes[i:res_in_bytes_len]

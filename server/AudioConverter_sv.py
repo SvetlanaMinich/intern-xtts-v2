@@ -34,4 +34,17 @@ class AudioConverter:
         sound.export(path_to_result_wav_file, format='wav')
         return path_to_result_wav_file
     
+
+    def bytes_to_wav(self, audiobytes, res_path:str) -> str:
+        wav_audio = AudioSegment.from_file(io.BytesIO(audiobytes), format="wav")
+        wav_audio.export(res_path, format="wav")
+        return res_path
+
+
+    def wav24_to_wav16(self, path_to_wav:str) -> str:
+        wav_audio = AudioSegment.from_file(path_to_wav)
+        wav_audio = wav_audio.set_frame_rate(16_000)
+        wav_audio = wav_audio.set_sample_width(2)
+        wav_audio.export(path_to_wav, format="wav")
+        return path_to_wav
     
