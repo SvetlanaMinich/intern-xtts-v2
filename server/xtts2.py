@@ -20,6 +20,6 @@ class XTTS_V2:
                                     speaker_wav=speaker_wav, 
                                     language=language, 
                                     file_path=file_path)
-        sf.write(file=file_path,
-                 data=wav,
-                 samplerate=24000)
+        # sf.write(file=file_path,
+        #          data=wav,
+        #          samplerate=24000)

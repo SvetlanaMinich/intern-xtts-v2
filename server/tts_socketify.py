@@ -10,7 +10,6 @@ from xtts2 import XTTS_V2
 from JsonStorage import JsonStorage
 
 CLIENT_ID_MAX_LEN = 4
-FIXED_HEADER_LEN = 4
 BYTEORDER = 'little'
 PORT = 8080
 HOST = '0.0.0.0'
@@ -23,7 +22,6 @@ async def clear_buf_files(f_paths) -> None:
 
 
 async def text_to_speech(tts_model: XTTS_V2,
-                         audio_conv: AudioConverter,
                          text: str,
                          client_voice_path: str,
                          language: str = 'en'):
@@ -35,9 +33,6 @@ async def text_to_speech(tts_model: XTTS_V2,
                             client_voice_path,
                             language,
                             result_path)
-    
-    await asyncio.to_thread(audio_conv.wav24_to_wav16,
-                            path_to_wav=result_path)
 
     async with aiofiles.open(result_path, 'rb') as voice:
         result_voice_in_bytes = await voice.read()
@@ -48,36 +43,40 @@ async def text_to_speech(tts_model: XTTS_V2,
 
 
 async def handle_tts(ws:WebSocket, msg, clients: JsonStorage, tts_model: XTTS_V2, audio_conv: AudioConverter):
-    client_id = int.from_bytes(msg[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
-    print(f'    > Client {client_id} here')
+    try:
+        client_id = int.from_bytes(msg[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
+        print(f'    > Client {client_id} here')
 
-    client_exists = await clients.client_exists_async(client_id=client_id)
-    if not client_exists:
-        async with aiofiles.open('def.wav', 'rb') as file:
-            client_voice = await file.read()
-        await clients.add_client_async(client_id=client_id, voice=client_voice)
-    else:
-        client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
+        client_exists = await clients.client_exists_async(client_id=client_id)
+        if not client_exists:
+            async with aiofiles.open('def.wav', 'rb') as file:
+                client_voice = await file.read()
+            await clients.add_client_async(client_id=client_id, voice=client_voice)
+        else:
+            client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
 
-    client_voice_path = await asyncio.to_thread(audio_conv.bytes_to_wav,
-                                                audiobytes=client_voice,
-                                                res_path=f'cl {client_id} target_voice.wav')
+        client_voice_path = await asyncio.to_thread(audio_conv.bytes_to_wav,
+                                                    audiobytes=client_voice,
+                                                    res_path=f'cl {client_id} target_voice.wav')
 
-    json_header = msg[CLIENT_ID_MAX_LEN:].decode('utf-8')
-    header = json.loads(json_header)
-    print(f"    > Data from client {client_id} received: {header['Text']}, {header['Language']}")
+        json_header = msg[CLIENT_ID_MAX_LEN:].decode('utf-8')
+        header = json.loads(json_header)
+        print(f"    > Data from client {client_id} received: {header['Text']}, {header['Language']}")
 
-    # process text-to-speech
-    res_in_bytes = await text_to_speech(tts_model=tts_model,
-                                        audio_conv=audio_conv,
-                                        text=header['Text'],
-                                        client_voice_path=client_voice_path,
-                                        language=header['Language'])
-    
-    ws.send(res_in_bytes)
-    print(f"    > Result {len(res_in_bytes)} sent to client {client_id}")
-    await clear_buf_files([os.getcwd() + fr'\cl {client_id} target_voice.wav'])
-    ws.end()
+        # process text-to-speech
+        res_in_bytes = await text_to_speech(tts_model=tts_model,
+                                            text=header['Text'],
+                                            client_voice_path=client_voice_path,
+                                            language=header['Language'])
+        
+        ws.send(res_in_bytes)
+        print(f"    > Result {len(res_in_bytes)} sent to client {client_id}")
+        await clear_buf_files([os.getcwd() + fr'\cl {client_id} target_voice.wav'])
+    except Exception:
+        print('     > Error occured')
+        ws.close()
+    finally:
+        ws.close()
     
 
 

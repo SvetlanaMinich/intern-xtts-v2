@@ -340,8 +340,8 @@ class TTS(nn.Module):
             **kwargs,
         )
         wav = self.synthesizer.save_wav(wav=wav, path=file_path, pipe_out=pipe_out)
-        # return file_path
-        return wav
+        return file_path
+        #return wav
 
     def voice_conversion(
         self,
