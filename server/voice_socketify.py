@@ -1,24 +1,17 @@
-import asyncio
 import os
-import functools
-
-import websockets 
+import asyncio
 
 from socketify import App, OpCode, WebSocket, CompressOptions, AppListenOptions
-import websockets.asyncio
-import websockets.asyncio.server
 
 from JsonStorage import JsonStorage
 
 CLIENT_ID_MAX_LEN = 4
-FIXED_HEADER_LEN = 4
 BYTEORDER = 'little'
 PORT = 8080
 HOST = '0.0.0.0'
-CHUNK_SIZE = 3000
 
 
-def handle_voice(ws: WebSocket, message, clients:JsonStorage=None):
+async def handle_voice(ws: WebSocket, message, clients:JsonStorage=None):
     client_id = int.from_bytes(message[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
     print(f'    > Client {client_id} here')
 
@@ -26,13 +19,13 @@ def handle_voice(ws: WebSocket, message, clients:JsonStorage=None):
     voice_buffer = message[CLIENT_ID_MAX_LEN:]
     print(f'    > Received buffer: {len(voice_buffer)}')
 
-    # client_exists = clients.client_exists(client_id=client_id)
-    # if client_exists:
-    #     clients.update_client(client_id=client_id, voice=bytes(voice_buffer))
-    # else:
-    #     clients.add_client(client_id=client_id, voice=bytes(voice_buffer))
+    client_exists = await clients.client_exists_async(client_id=client_id)
+    if client_exists:
+        await clients.update_client_async(client_id=client_id, voice=bytes(voice_buffer))
+    else:
+        await clients.add_client_async(client_id=client_id, voice=bytes(voice_buffer))
 
-    ws.send('done', OpCode.TEXT)  # Send completion response
+    await ws.send('done', OpCode.TEXT)  # Send completion response
     ws.end()
 
 
@@ -46,7 +39,7 @@ def run_server():
         "compression": CompressOptions.SHARED_COMPRESSOR,
         "max_payload_length": 16 * 1024 * 1024,
         "idle_timeout": 60,
-        "message": lambda ws, msg, opcode: handle_voice(ws, msg, clients),
+        "message": lambda ws, msg, opcode: asyncio.create_task(handle_voice(ws, msg, clients)),
         "close": lambda ws, code, msg: print("WebSocket closed")
     })
     

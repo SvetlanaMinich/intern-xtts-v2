@@ -22,16 +22,6 @@ class JsonStorage:
         logger.debug(f'Client {client_id} added')
 
     
-    def add_client(self, client_id:int, voice:bytes) -> None:
-        new_file = self.json_dir + fr'/{client_id}.json'
-        
-        client_json_data = json.dumps({'voice': base64.b64encode(voice).decode('utf-8')})
-        with open(new_file, 'w') as f:
-            f.write(client_json_data)
-        
-        logger.debug(f'Client {client_id} added')
-
-    
     async def update_client_async(self, client_id:int, voice:bytes) -> None:
         clients = os.listdir(path=self.json_dir)
         
@@ -45,32 +35,7 @@ class JsonStorage:
                 break
 
 
-    def update_client(self, client_id:int, voice:bytes) -> None:
-        clients = os.listdir(path=self.json_dir)
-        
-        client_json_data = json.dumps({'voice': base64.b64encode(voice).decode('utf-8')})
-        for client in clients:
-            if client == f'{client_id}.json':
-                file_path = self.json_dir + fr'/{client}'
-                with open(file_path, 'w') as f:
-                    f.write(client_json_data)
-                    logger.debug(f'Client {client_id} voice updated')
-                break
-        
-
     async def client_exists_async(self, client_id:int) -> bool:
-        clients = os.listdir(path=self.json_dir)
-
-        for client in clients:
-            if client == f'{client_id}.json':
-                logger.debug(f'Client {client_id} exists')
-                return True
-        
-        logger.debug(f'Client {client_id} does not exist')
-        return False
-    
-
-    def client_exists(self, client_id:int) -> bool:
         clients = os.listdir(path=self.json_dir)
 
         for client in clients:
@@ -90,19 +55,6 @@ class JsonStorage:
                 file_path = self.json_dir + fr'/{client}'
                 async with aiofiles.open(file_path, 'r') as f:
                     json_data = await f.read()
-                    data = json.loads(json_data)
-                    logger.debug(f'Client {client_id} voice extracted')
-                    return base64.b64decode(data['voice'])
-                
-
-    def get_voice_by_client_id(self, client_id:int) -> bytes:
-        clients = os.listdir(path=self.json_dir)
-
-        for client in clients:
-            if client == f'{client_id}.json':
-                file_path = self.json_dir + fr'/{client}'
-                with open(file_path, 'r') as f:
-                    json_data = f.read()
                     data = json.loads(json_data)
                     logger.debug(f'Client {client_id} voice extracted')
                     return base64.b64decode(data['voice'])

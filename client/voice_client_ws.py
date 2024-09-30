@@ -8,7 +8,6 @@ BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
 HOST = 'localhost'
 PORT = 8080
-CHUNK_SIZE = 3_000
 
 
 async def run_client(client_id:int, wav_buffer:bytes) -> None:

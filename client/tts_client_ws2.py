@@ -49,7 +49,7 @@ async def run_client(client_id: int, text:str, lang:str='en'):
 
 
 if __name__ == '__main__':
-    client_id = 1
+    client_id = 2
 
     text = input('Enter text: ')
     lang = input('Enter lang code: ')
