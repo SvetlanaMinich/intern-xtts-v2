@@ -15,8 +15,6 @@ PORT = 8083            # external: 65.93.185.202:40306
 HOST = '0.0.0.0'
 
 ws_queues = {}
-queue_num = 0
-
 
 async def clear_buf_files(f_paths) -> None:
     for fp in f_paths:
@@ -79,7 +77,6 @@ async def process_tts_requests(tts_model: XTTS_v2,
         queue.task_done()  # Indicate that the task is done
 
 
-
 async def handle_tts(ws:WebSocket, msg, 
                      clients:JsonStorage = None, 
                      tts_model:XTTS_v2 = None, 
@@ -123,10 +120,6 @@ def on_open(ws: WebSocket):
 
 def on_close(ws: WebSocket, msg:str):
     print("WebSocket closed")
-    print(msg)
-    if msg in ws_queues.keys():
-        del ws_queues[msg]
-        clear_buf_files([f'cl {msg} target_voice.wav'])
 
 
 def run_server_tts():
@@ -149,6 +142,7 @@ def run_server_tts():
         })
     app.listen(AppListenOptions(PORT, HOST), lambda config: print(f"Listening on port {config.port}"))
     app.run()
+
 
 if __name__ == "__main__":
     try:
