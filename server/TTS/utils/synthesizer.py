@@ -8,9 +8,9 @@ import torch
 from torch import nn
 
 from TTS.config import load_config
-from TTS.tts.configs.vits_config import VitsConfig
+# from TTS.tts.configs.vits_config import VitsConfig
 from TTS.tts.models import setup_model as setup_tts_model
-from TTS.tts.models.vits import Vits
+# from TTS.tts.models.vits import Vits
 
 # pylint: disable=unused-wildcard-import
 # pylint: disable=wildcard-import
@@ -90,18 +90,22 @@ class Synthesizer(nn.Module):
             assert torch.cuda.is_available(), "CUDA is not availabe on this machine."
 
         if tts_checkpoint:
+            print('     > SYNTHESIZER.PY 93')
             self._load_tts(tts_checkpoint, tts_config_path, use_cuda)
             self.output_sample_rate = self.tts_config.audio["sample_rate"]
 
         if vocoder_checkpoint:
+            print('     > SYNTHESIZER.PY 98')
             self._load_vocoder(vocoder_checkpoint, vocoder_config, use_cuda)
             self.output_sample_rate = self.vocoder_config.audio["sample_rate"]
 
         if vc_checkpoint:
+            print('     > SYNTHESIZER.PY 103')
             self._load_vc(vc_checkpoint, vc_config, use_cuda)
             self.output_sample_rate = self.vc_config.audio["output_sample_rate"]
-
+        print('     > SYNTHESIZER.PY 106')
         if model_dir:
+            print('     > SYNTHESIZER.PY 108')
             if "fairseq" in model_dir:
                 self._load_fairseq_from_dir(model_dir, use_cuda)
                 self.output_sample_rate = self.tts_config.audio["sample_rate"]
@@ -158,10 +162,14 @@ class Synthesizer(nn.Module):
 
         We assume the model knows how to load itself from the directory and there is a config.json file in the directory.
         """
+        print(f'     > SYNTHESIZER.PY 165, model_dir: {model_dir}')
         config = load_config(os.path.join(model_dir, "config.json"))
+        print('     > SYNTHESIZER.PY 167')
         self.tts_config = config
         self.tts_model = setup_tts_model(config)
+        print('     > SYNTHESIZER.PY 170')
         self.tts_model.load_checkpoint(config, checkpoint_dir=model_dir, eval=True)
+        print('     > SYNTHESIZER.PY 172')
         if use_cuda:
             self.tts_model.cuda()
 

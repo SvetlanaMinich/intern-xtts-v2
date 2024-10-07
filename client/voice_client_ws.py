@@ -6,12 +6,15 @@ from AudioConverter_cl import AudioConverter
 
 BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
-HOST = 'localhost'
-PORT = 8080
+HOST = '213.108.196.111'
+PORT = 46965
+
+
+# 213.108.196.111:46965 -> 8081/tcp
 
 
 async def run_client(client_id:int, wav_buffer:bytes) -> None:
-    async with connect('ws://localhost:8080/') as ws:
+    async with connect(f'ws://{HOST}:{PORT}') as ws:
         client_id_bytes = client_id.to_bytes(4, byteorder=BYTEORDER)
         
         print(f'    > Send {len(wav_buffer)}')
@@ -21,10 +24,10 @@ async def run_client(client_id:int, wav_buffer:bytes) -> None:
 
 
 if __name__ == '__main__':
-    client_id = 1
+    client_id = 11
 
     aud_conv = AudioConverter()
-    wav_buf = aud_conv.wav_to_16bytes(r'C:\intern\xtts-2\voice_samples\Usachev 10.wav')
+    wav_buf = aud_conv.wav_to_16bytes(r'C:\intern\xtts-2\voice_samples\Faib 10 wav.wav')
 
     asyncio.run(run_client(client_id=client_id,
                            wav_buffer=wav_buf))

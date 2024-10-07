@@ -45,6 +45,7 @@ class AudioConverter:
         wav_audio = AudioSegment.from_file(path_to_wav)
         wav_audio = wav_audio.set_frame_rate(16_000)
         wav_audio = wav_audio.set_sample_width(2)
+        wav_audio = wav_audio.set_channels(1)   
         wav_audio.export(path_to_wav, format="wav")
         return path_to_wav
     

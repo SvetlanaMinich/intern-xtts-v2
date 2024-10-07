@@ -60,6 +60,7 @@ class TTS(nn.Module):
             progress_bar (bool, optional): Whether to pring a progress bar while downloading a model. Defaults to True.
             gpu (bool, optional): Enable/disable GPU. Some models might be too slow on CPU. Defaults to False.
         """
+        print('HERE')
         super().__init__()
         self.manager = ModelManager(models_file=self.get_models_file_path(), progress_bar=progress_bar, verbose=False)
         self.config = load_config(config_path) if config_path else None
@@ -78,6 +79,7 @@ class TTS(nn.Module):
                 self.load_model_by_name(model_name, gpu)
 
         if model_path:
+            print('     > API.PY 82')
             self.load_tts_model_by_path(
                 model_path, config_path, vocoder_path=vocoder_path, vocoder_config=vocoder_config_path, gpu=gpu
             )
@@ -130,9 +132,12 @@ class TTS(nn.Module):
         if "fairseq" in model_name or (model_item is not None and isinstance(model_item["model_url"], list)):
             # return model directory if there are multiple files
             # we assume that the model knows how to load itself
+            print('     > API.PY 134')
             return None, None, None, None, model_path
+        print('     > API.PY 135')
         if model_item.get("default_vocoder") is None:
             return model_path, config_path, None, None, None
+        print('     > API.PY 138')
         vocoder_path, vocoder_config_path, _ = self.manager.download_model(model_item["default_vocoder"])
         return model_path, config_path, vocoder_path, vocoder_config_path, None
 
@@ -201,8 +206,8 @@ class TTS(nn.Module):
         """
 
         self.synthesizer = Synthesizer(
-            tts_checkpoint=model_path,
-            tts_config_path=config_path,
+            tts_checkpoint="/root/server/tts_conf",
+            tts_config_path="/root/server/tts_conf/config.json",
             tts_speakers_file=None,
             tts_languages_file=None,
             vocoder_checkpoint=vocoder_path,

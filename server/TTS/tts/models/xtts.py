@@ -265,10 +265,13 @@ class Xtts(BaseTTS):
             chunk_length (int): Length of the audio chunks in seconds. When `length == chunk_length`, the whole audio
                 is being used without chunking. It must be < `length`. Defaults to 6.
         """
+        print('     > xtts.py 268')
         if sr != 22050:
             audio = torchaudio.functional.resample(audio, sr, 22050)
+        print('     > xtts.py 271')
         if length > 0:
             audio = audio[:, : 22050 * length]
+        print('     > xtts.py 274')
         if self.args.gpt_use_perceiver_resampler:
             style_embs = []
             for i in range(0, audio.shape[1], 22050 * chunk_length):
@@ -277,7 +280,7 @@ class Xtts(BaseTTS):
                 # if the chunk is too short ignore it 
                 if audio_chunk.size(-1) < 22050 * 0.33:
                     continue
-
+                print('     > xtts.py 283')
                 mel_chunk = wav_to_mel_cloning(
                     audio_chunk,
                     mel_norms=self.mel_stats.cpu(),
@@ -291,12 +294,16 @@ class Xtts(BaseTTS):
                     f_max=8000,
                     n_mels=80,
                 )
+                print('     > xtts.py 297')
                 style_emb = self.gpt.get_style_emb(mel_chunk.to(self.device), None)
+                print('     > xtts.py 299')
                 style_embs.append(style_emb)
 
             # mean style embedding
+            print('     > xtts.py 303')
             cond_latent = torch.stack(style_embs).mean(dim=0)
         else:
+            print('     > xtts.py 306')
             mel = wav_to_mel_cloning(
                 audio,
                 mel_norms=self.mel_stats.cpu(),
@@ -310,7 +317,9 @@ class Xtts(BaseTTS):
                 f_max=8000,
                 n_mels=80,
             )
+            print('     > xtts.py 320')
             cond_latent = self.gpt.get_style_emb(mel.to(self.device))
+            print('     > xtts.py 322')
         return cond_latent.transpose(1, 2)
 
     @torch.inference_mode()
@@ -350,33 +359,36 @@ class Xtts(BaseTTS):
         else:
             audio_paths = audio_path
 
+        print(' >353')
         speaker_embeddings = []
         audios = []
         speaker_embedding = None
+        print(' >357')
         for file_path in audio_paths:
             audio = load_audio(file_path, load_sr)
+            print(' >360')
             audio = audio[:, : load_sr * max_ref_length].to(self.device)
             if sound_norm_refs:
                 audio = (audio / torch.abs(audio).max()) * 0.75
             if librosa_trim_db is not None:
                 audio = librosa.effects.trim(audio, top_db=librosa_trim_db)[0]
-
+            print(' >366')
             # compute latents for the decoder
             speaker_embedding = self.get_speaker_embedding(audio, load_sr)
             speaker_embeddings.append(speaker_embedding)
-
+            print(' >370')
             audios.append(audio)
-
+        print(' >372')
         # merge all the audios and compute the latents for the gpt
         full_audio = torch.cat(audios, dim=-1)
         gpt_cond_latents = self.get_gpt_cond_latents(
             full_audio, load_sr, length=gpt_cond_len, chunk_length=gpt_cond_chunk_len
         )  # [1, 1024, T]
-
+        print(' >378')
         if speaker_embeddings:
             speaker_embedding = torch.stack(speaker_embeddings)
             speaker_embedding = speaker_embedding.mean(dim=0)
-
+        print(' >382')
         return gpt_cond_latents, speaker_embedding
 
     def synthesize(self, text, config, speaker_wav, language, speaker_id=None, **kwargs):
@@ -518,6 +530,7 @@ class Xtts(BaseTTS):
         enable_text_splitting=False,
         **hf_generate_kwargs,
     ):
+        print(' >521')
         language = language.split("-")[0]  # remove the country code
         length_scale = 1.0 / max(speed, 0.05)
         gpt_cond_latent = gpt_cond_latent.to(self.device)
@@ -526,17 +539,17 @@ class Xtts(BaseTTS):
             text = split_sentence(text, language, self.tokenizer.char_limits[language])
         else:
             text = [text]
-
+        print(' >530')
         wavs = []
         gpt_latents_list = []
         for sent in text:
             sent = sent.strip().lower()
             text_tokens = torch.IntTensor(self.tokenizer.encode(sent, lang=language)).unsqueeze(0).to(self.device)
-
+            print(' >536')
             assert (
                 text_tokens.shape[-1] < self.args.gpt_max_text_tokens
             ), " ❗ XTTS can only generate text with a maximum of 400 tokens."
-
+            print(' >540')
             with torch.no_grad():
                 gpt_codes = self.gpt.generate(
                     cond_latents=gpt_cond_latent,
@@ -715,6 +728,7 @@ class Xtts(BaseTTS):
         # remove xtts gpt trainer extra keys
         ignore_keys = ["torch_mel_spectrogram_style_encoder", "torch_mel_spectrogram_dvae", "dvae"]
         for key in list(checkpoint.keys()):
+            print('     > XTTS.PY 731')
             # check if it is from the coqui Trainer if so convert it
             if key.startswith("xtts."):
                 new_key = key.replace("xtts.", "")
@@ -756,22 +770,22 @@ class Xtts(BaseTTS):
 
         model_path = checkpoint_path or os.path.join(checkpoint_dir, "model.pth")
         vocab_path = vocab_path or os.path.join(checkpoint_dir, "vocab.json")
-
+        print('     > XTTS.PY 772')
         if speaker_file_path is None and checkpoint_dir is not None:
             speaker_file_path = os.path.join(checkpoint_dir, "speakers_xtts.pth")
-
+        print('     > XTTS.PY 775')
         self.language_manager = LanguageManager(config)
         self.speaker_manager = None
         if speaker_file_path is not None and os.path.exists(speaker_file_path):
             self.speaker_manager = SpeakerManager(speaker_file_path)
-
+        print('     > XTTS.PY 780')
         if os.path.exists(vocab_path):
             self.tokenizer = VoiceBpeTokenizer(vocab_file=vocab_path)
-
+        print('     > XTTS.PY 783')
         self.init_models()
-
+        print('     > XTTS.PY 785')
         checkpoint = self.get_compatible_checkpoint_state_dict(model_path)
-
+        print('     > XTTS.PY 787')
         # deal with v1 and v1.1. V1 has the init_gpt_for_inference keys, v1.1 do not
         try:
             self.load_state_dict(checkpoint, strict=strict)

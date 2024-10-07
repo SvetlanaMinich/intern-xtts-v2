@@ -4,7 +4,7 @@ import re
 from typing import Dict
 
 import fsspec
-import yaml
+# import yaml
 from coqpit import Coqpit
 
 from TTS.config.shared_configs import *
@@ -40,14 +40,18 @@ def register_config(model_name: str) -> Coqpit:
         from TTS.tts.configs.xtts_config import XttsConfig
 
         config_class = XttsConfig
+        print('     > __init__.py 43')
     paths = ["TTS.tts.configs", "TTS.vocoder.configs", "TTS.encoder.configs", "TTS.vc.configs"]
-    for path in paths:
-        try:
-            config_class = find_module(path, config_name)
-        except ModuleNotFoundError:
-            pass
-    if config_class is None:
-        raise ModuleNotFoundError(f" [!] Config for {model_name} cannot be found.")
+    # for path in paths:
+    #     try:
+    #         print('     > __init__.py 47')
+    #         config_class = find_module(path, config_name)
+    #         print('     > __init__.py 49')
+    #     except ModuleNotFoundError:
+    #         pass
+    # if config_class is None:
+    #     raise ModuleNotFoundError(f" [!] Config for {model_name} cannot be found.")
+    print('     > __init__.py 54')
     return config_class
 
 
@@ -82,21 +86,28 @@ def load_config(config_path: str) -> Coqpit:
     ext = os.path.splitext(config_path)[1]
     if ext in (".yml", ".yaml"):
         with fsspec.open(config_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
+            # data = yaml.safe_load(f)
+            print('     > need yaml')
     elif ext == ".json":
         try:
             with fsspec.open(config_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
+            print('     > config.__init__.py 91')
         except json.decoder.JSONDecodeError:
             # backwards compat.
             data = read_json_with_comments(config_path)
     else:
         raise TypeError(f" [!] Unknown config file type {ext}")
+    print('     > config.__init__.py 97')
     config_dict.update(data)
+    print('     > config.__init__.py 99')
     model_name = _process_model_name(config_dict)
+    print('     > config.__init__.py 101')
     config_class = register_config(model_name.lower())
+    print('     > config.__init__.py 103')
     config = config_class()
     config.from_dict(config_dict)
+    print('     > config.__init__.py 106')
     return config
 
 

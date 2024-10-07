@@ -419,6 +419,7 @@ class ModelManager(object):
             output_model_path, output_config_path = self._find_files(output_path)
         # update paths in the config.json
         self._update_paths(output_path, output_config_path)
+        print('     > MANAGE.PY 422')
         return output_model_path, output_config_path, model_item
 
     @staticmethod
@@ -477,24 +478,25 @@ class ModelManager(object):
 
         # update the scale_path.npy file path in the model config.json
         self._update_path("audio.stats_path", output_stats_path, config_path)
-
+        print('     > MANAGE.PY 480')
         # update the speakers.json file path in the model config.json to the current path
         self._update_path("d_vector_file", output_d_vector_file_path, config_path)
         self._update_path("d_vector_file", output_d_vector_file_pth_path, config_path)
         self._update_path("model_args.d_vector_file", output_d_vector_file_path, config_path)
         self._update_path("model_args.d_vector_file", output_d_vector_file_pth_path, config_path)
-
+        print('     > MANAGE.PY 486')
         # update the speaker_ids.json file path in the model config.json to the current path
         self._update_path("speakers_file", output_speaker_ids_file_path, config_path)
         self._update_path("speakers_file", output_speaker_ids_file_pth_path, config_path)
         self._update_path("model_args.speakers_file", output_speaker_ids_file_path, config_path)
         self._update_path("model_args.speakers_file", output_speaker_ids_file_pth_path, config_path)
-
+        print('     > MANAGE.PY 492')
         # update the speaker_encoder file path in the model config.json to the current path
         self._update_path("speaker_encoder_model_path", speaker_encoder_model_path, config_path)
         self._update_path("model_args.speaker_encoder_model_path", speaker_encoder_model_path, config_path)
         self._update_path("speaker_encoder_config_path", speaker_encoder_config_path, config_path)
         self._update_path("model_args.speaker_encoder_config_path", speaker_encoder_config_path, config_path)
+        print('     > MANAGE.PY 498')
 
     @staticmethod
     def _update_path(field_name, new_path, config_path):

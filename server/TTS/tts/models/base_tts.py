@@ -18,6 +18,8 @@ from TTS.tts.utils.speakers import SpeakerManager, get_speaker_balancer_weights,
 from TTS.tts.utils.synthesis import synthesis
 from TTS.tts.utils.visual import plot_alignment, plot_spectrogram
 
+from TTS.Trainer.trainer import trainer
+
 # pylint: skip-file
 
 
@@ -420,23 +422,23 @@ class BaseTTS(BaseTrainerModel):
     def on_init_start(self, trainer):
         """Save the speaker.pth and language_ids.json at the beginning of the training. Also update both paths."""
         if self.speaker_manager is not None:
-            output_path = os.path.join(TTS.Trainer.trainer.output_path, "speakers.pth")
+            output_path = os.path.join(trainer.output_path, "speakers.pth")
             self.speaker_manager.save_ids_to_file(output_path)
-            TTS.Trainer.trainer.config.speakers_file = output_path
+            trainer.config.speakers_file = output_path
             # some models don't have `model_args` set
-            if hasattr(TTS.Trainer.trainer.config, "model_args"):
-                TTS.Trainer.trainer.config.model_args.speakers_file = output_path
-            TTS.Trainer.trainer.config.save_json(os.path.join(TTS.Trainer.trainer.output_path, "config.json"))
+            if hasattr(trainer.config, "model_args"):
+                trainer.config.model_args.speakers_file = output_path
+            trainer.config.save_json(os.path.join(trainer.output_path, "config.json"))
             print(f" > `speakers.pth` is saved to {output_path}.")
             print(" > `speakers_file` is updated in the config.json.")
 
         if self.language_manager is not None:
-            output_path = os.path.join(TTS.Trainer.trainer.output_path, "language_ids.json")
+            output_path = os.path.join(trainer.output_path, "language_ids.json")
             self.language_manager.save_ids_to_file(output_path)
-            TTS.Trainer.trainer.config.language_ids_file = output_path
-            if hasattr(TTS.Trainer.trainer.config, "model_args"):
-                TTS.Trainer.trainer.config.model_args.language_ids_file = output_path
-            TTS.Trainer.trainer.config.save_json(os.path.join(TTS.Trainer.trainer.output_path, "config.json"))
+            trainer.config.language_ids_file = output_path
+            if hasattr(trainer.config, "model_args"):
+                trainer.config.model_args.language_ids_file = output_path
+            trainer.config.save_json(os.path.join(trainer.output_path, "config.json"))
             print(f" > `language_ids.json` is saved to {output_path}.")
             print(" > `language_ids_file` is updated in the config.json.")
 

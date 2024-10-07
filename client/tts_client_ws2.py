@@ -8,9 +8,11 @@ import soundfile as sf
 
 BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
-HOST = 'localhost'
-PORT = 8080
-CHUNK_SIZE = 3000
+HOST = '65.93.185.202'
+PORT = 40297
+
+# 65.93.185.202:40297 to 8082
+
 RESULT_PATH = 'C:/intern/xtts-2/client/res/output.wav'
 
 

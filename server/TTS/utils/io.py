@@ -43,6 +43,7 @@ def load_fsspec(
     """
     is_local = os.path.isdir(path) or os.path.isfile(path)
     if cache and not is_local:
+        print('     > UTILS.IO.PY 46')
         with fsspec.open(
             f"filecache::{path}",
             filecache={"cache_storage": str(get_user_data_dir("tts_cache"))},
@@ -50,7 +51,9 @@ def load_fsspec(
         ) as f:
             return torch.load(f, map_location=map_location, **kwargs)
     else:
+        print('     > UTILS.IO.PY 54')
         with fsspec.open(path, "rb") as f:
+            print('     > UTILS.IO.PY 56')
             return torch.load(f, map_location=map_location, **kwargs)
 
 

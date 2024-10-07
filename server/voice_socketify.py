@@ -1,32 +1,37 @@
 import os
 import asyncio
 
-from socketify import App, OpCode, WebSocket, CompressOptions, AppListenOptions
+from socketify import App, OpCode, WebSocket, CompressOptions, AppListenOptions, AppOptions
 
 from JsonStorage import JsonStorage
 
 CLIENT_ID_MAX_LEN = 4
 BYTEORDER = 'little'
-PORT = 8080
+PORT = 8081             #external: 83.26.104.147:40865 -> 8081/tcp
 HOST = '0.0.0.0'
 
 
 async def handle_voice(ws: WebSocket, message, clients:JsonStorage=None):
-    client_id = int.from_bytes(message[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
-    print(f'    > Client {client_id} here')
+    try:
+        client_id = int.from_bytes(message[:CLIENT_ID_MAX_LEN], byteorder=BYTEORDER)
+        print(f'    > Client {client_id} here')
 
-    voice_buffer = bytes()
-    voice_buffer = message[CLIENT_ID_MAX_LEN:]
-    print(f'    > Received buffer: {len(voice_buffer)}')
+        voice_buffer = bytes()
+        voice_buffer = message[CLIENT_ID_MAX_LEN:]
+        print(f'    > Received buffer: {len(voice_buffer)}')
 
-    client_exists = await clients.client_exists_async(client_id=client_id)
-    if client_exists:
-        await clients.update_client_async(client_id=client_id, voice=bytes(voice_buffer))
-    else:
-        await clients.add_client_async(client_id=client_id, voice=bytes(voice_buffer))
+        client_exists = await clients.client_exists_async(client_id=client_id)
+        if client_exists:
+            await clients.update_client_async(client_id=client_id, voice=bytes(voice_buffer))
+        else:
+            await clients.add_client_async(client_id=client_id, voice=bytes(voice_buffer))
 
-    await ws.send('done', OpCode.TEXT)  # Send completion response
-    ws.end()
+        ws.send('done', OpCode.TEXT)  # Send completion response
+    except Exception as ex:
+        print(f'    > Error here: {ex.__context__}')
+        ws.end()
+    finally:
+        ws.end()
 
 
 def run_server():
