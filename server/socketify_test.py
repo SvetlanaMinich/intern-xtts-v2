@@ -138,17 +138,47 @@ async def handle_text(msg):
         print(f'     > Error occured: {ex}')
 
 
-def on_open_audio(ws: WebSocket):
-    print("AUDIO WebSocket opened")
+async def handle_voice(ws: WebSocket,
+                       msg, 
+                       clients:JsonStorage=None):
+    try:
+        client_id = msg[:20].decode('utf-8')
+        print(f'    > Client {client_id} here')
 
-def on_close_audio(ws: WebSocket):
-    print("AUDIO WebSocket closed")
+        voice_buffer = msg[20:]
+        print(f'    > Received buffer: {len(voice_buffer)}')
+
+        client_exists = await clients.client_exists_async(client_id=client_id)
+        if client_exists:
+            await clients.update_client_async(client_id=client_id, voice=bytes(voice_buffer))
+        else:
+            await clients.add_client_async(client_id=client_id, voice=bytes(voice_buffer))
+
+        ws.send('done'.encode('utf-8'))  # Send completion response
+    except Exception as ex:
+        print(f'    > Error here: {ex.__context__}')
+    finally:
+        ws.close()
+
+
+def on_open_tts(ws: WebSocket):
+    print("TTS WebSocket opened")
+
+def on_close_tts(ws: WebSocket):
+    print("TTS WebSocket closed")
+
+
+def on_open_voice(ws: WebSocket):
+    print("VOICE WebSocket opened")
+
+def on_close_voice(ws: WebSocket):
+    print("VOICE WebSocket closed")
 
 
 def on_open_text(ws: WebSocket):
     print('TEXT WebSocket opened')
 
-def on_close_audio(ws: WebSocket):
+def on_close_text(ws: WebSocket):
     print("TEXT WebSocket closed")
 
 
@@ -161,23 +191,32 @@ def run_server_tts():
     clients = JsonStorage(path_to_json_dir=clients_dir)
 
     app = App()
-    app.ws('/audio', {
+    app.ws('/save-audio', {
             "compression": CompressOptions.SHARED_COMPRESSOR,
             "max_payload_length": 16 * 1024 * 1024,
-            "idle_timeout": 60,
-            "open": lambda ws: on_open_audio(ws),
+            "idle_timeout": 960,
+            "open": lambda ws: on_open_voice(ws),
+            "message": lambda ws, msg, opcode: asyncio.create_task(
+                handle_voice(ws, msg, clients)),
+            "close": lambda ws, code, msg: on_close_voice(ws)
+    })
+    app.ws('/get-tts-result', {
+            "compression": CompressOptions.SHARED_COMPRESSOR,
+            "max_payload_length": 16 * 1024 * 1024,
+            "idle_timeout": 300,
+            "open": lambda ws: on_open_tts(ws),
             "message": lambda ws, msg, opcode: asyncio.create_task(
                 handle_tts(ws, msg, clients, tts_model, audio_conv)),
-            "close": lambda ws, code, msg: on_close_audio(ws)
+            "close": lambda ws, code, msg: on_close_tts(ws)
         })
-    app.ws('/text', {
+    app.ws('/send-text', {
             "compression": CompressOptions.SHARED_COMPRESSOR,
             "max_payload_length": 16 * 1024 * 1024,
-            "idle_timeout": 60,
+            "idle_timeout": 300,
             "open": lambda ws: on_open_text(ws),
             "message": lambda ws, msg, opcode: asyncio.create_task(
                 handle_text(msg)),
-            "close": lambda ws, code, msg: on_close_audio(ws)
+            "close": lambda ws, code, msg: on_close_text(ws)
     })
     app.listen(AppListenOptions(PORT, HOST), lambda config: print(f"Listening on port {config.port}"))
     app.run()

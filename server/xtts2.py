@@ -1,8 +1,8 @@
 from TTS.api import TTS
 
-
+import soundfile as sf
 import torch
-import torchaudio
+FILE_NAME = 'logs.txt'
 
 class XTTS_v2:
     def __init__(self,
@@ -16,9 +16,13 @@ class XTTS_v2:
             speaker_wav:str,
             language:str='en',
             file_path:str='output.wav') -> None:
-        print(text)
+        with open(FILE_NAME, 'a') as f:
+            f.write(f'\n         > run "{text}"')
         wav = self.model.tts_to_file(text=text,
                                     file_path=file_path,
                                     speaker_wav=speaker_wav,
                                     language=language)
+        sf.write(file=file_path,
+                 data=wav,
+                 samplerate=24000)
         

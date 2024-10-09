@@ -49,7 +49,6 @@ def run_server():
     })
     
     app.listen(AppListenOptions(PORT, HOST), lambda config: print(f"Listening on port {config.port}"))
-    
     app.run()
 
 

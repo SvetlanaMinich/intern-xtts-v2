@@ -39,7 +39,7 @@ def make_additional_headers(id:int,
 async def run_client(client_id: int, text:str, lang:str='en'):
     s_conv = AudioConverter()
     async with connect(f'ws://{HOST}:{PORT}/') as ws:
-        client_id = "Aaaaaaaaaaaaaaaaaa16"
+        client_id = "Aaaaaaaaaaaaaaaaaa17"
         text = 'The sun was setting over the horizon, painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean, and the waves softly lapped against the shore. It was the perfect evening, one that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me, and I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.'
         lang = 'en'
         desc_header = make_additional_headers(client_id, text, lang)

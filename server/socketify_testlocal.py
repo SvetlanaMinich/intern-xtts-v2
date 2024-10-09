@@ -14,6 +14,8 @@ BYTEORDER = 'little'
 PORT = 8083            # external: 65.93.185.202:40306
 HOST = '0.0.0.0'
 
+FILE_NAME = 'logs.txt'
+
 ws_queues = {}
 
 async def clear_buf_files(f_paths) -> None:
@@ -21,28 +23,35 @@ async def clear_buf_files(f_paths) -> None:
         if fp and os.path.isfile(fp):
             try:
                 await asyncio.to_thread(os.remove, fp)
-                print(f'     > file {fp} removed')
+                async with aiofiles.open(FILE_NAME, 'a') as f:
+                    await f.write(f'\n     > file {fp} removed')
             except Exception:
-                print(f'    > file {fp} was not deleted')
+                async with aiofiles.open(FILE_NAME, 'a') as f:
+                    await f.write(f'\n    > file {fp} was not deleted')
 
 
 async def text_to_speech(tts_model: XTTS_v2,
                          audio_conv:AudioConverter,
+                         client_id:str,
                          text: str,
                          client_voice_path: str,
                          language: str = 'en'):
 
-    result_path = os.curdir + fr'\{text[:15]}.wav'
+    result_path = os.curdir + fr'\{client_id}.wav'
     
-    print('     > 31')
-    await asyncio.to_thread(tts_model.run,
+    async with aiofiles.open(FILE_NAME, 'a') as f:
+        await f.write(f'\n     TTS started: {text}')
+
+    tts_model.run(
                             text=text,
                             speaker_wav=client_voice_path,
                             language=language, 
                             file_path=result_path)
 
-    await asyncio.to_thread(audio_conv.wav24_to_wav16,
-                            path_to_wav=result_path)
+    async with aiofiles.open(FILE_NAME, 'a') as f:
+        await f.write(f'\n     Converting result from 24 to 16k wav')
+
+    audio_conv.wav24_to_wav16(path_to_wav=result_path)
 
     async with aiofiles.open(result_path, 'rb') as voice:
         result_voice_in_bytes = await voice.read()
@@ -54,25 +63,56 @@ async def text_to_speech(tts_model: XTTS_v2,
 async def process_tts_requests(tts_model: XTTS_v2, 
                                audio_conv: AudioConverter,
                                ws:WebSocket,
-                               client_id:int):
+                               client_id:int,
+                               clients:JsonStorage):
     while True:
         queue = ws_queues[client_id]
         # Wait for a request from the queue
-        text, client_voice_path, language, client_id = await queue.get()
+        text, language, client_id = await queue.get()
 
-        print(f'     Task started: {text}')
-        
-        # # process text-to-speech
-        res_in_bytes = await text_to_speech(tts_model=tts_model,
-                                            text=text,
-                                            client_voice_path=client_voice_path,
-                                            language=language,
-                                            audio_conv=audio_conv)
+        if not os.path.exists(f'cl {client_id} target_voice.wav'):
+            client_exists = await clients.client_exists_async(client_id=client_id)
+            if not client_exists:
+                async with aiofiles.open('def.wav', 'rb') as file:
+                    client_voice = await file.read()
+                await clients.add_client_async(client_id=client_id, voice=client_voice)
+            else:
+                client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
 
-        res_in_bytes = res_in_bytes[44:]
-        ws.send(res_in_bytes)
+            client_voice_path = audio_conv.bytes_to_wav(audiobytes=client_voice,
+                                                        res_path=f'cl {client_id} target_voice.wav')
+        else:
+            client_voice_path = f'cl {client_id} target_voice.wav'
+
+        async with aiofiles.open(FILE_NAME, 'a') as f:
+            await f.write(f'\n     Task started: {text}')
         
-        print(f"    > Result {len(res_in_bytes)} sent to client {client_id}")
+        sens = text.split('.')
+        for sen in sens:
+            if len(sen) == 0:
+                continue
+            sen = sen.strip().rstrip()
+            res_in_bytes = await text_to_speech(tts_model=tts_model,
+                                                text=sen,
+                                                client_voice_path=client_voice_path,
+                                                language=language,
+                                                audio_conv=audio_conv,
+                                                client_id=client_id)
+            
+            # res_in_bytes = res_in_bytes[44:]
+            ws.send(res_in_bytes)
+
+            # if ws.get_remote_address() is not None: # work only with different machines
+            #     ws.send(res_in_bytes)
+            # else:
+            #     async with aiofiles.open(FILE_NAME, 'a') as f:
+            #         await f.write(f"\n    > WebSocket closed")
+            #     break            
+        
+        async with aiofiles.open(FILE_NAME, 'a') as f:
+            await f.write(f"\n    > Result {len(res_in_bytes)} sent to client {client_id}")
+
+        await asyncio.sleep(0.1)
 
         queue.task_done()  # Indicate that the task is done
 
@@ -85,41 +125,31 @@ async def handle_tts(ws:WebSocket, msg,
     try:
         header = json.loads(msg.decode('utf-8'))
         client_id = header['Client_id']
-        print(f'    > Client {client_id} here')
+        async with aiofiles.open(FILE_NAME, 'a') as f:
+            await f.write(f'\n\n    > CLIENT {client_id} HERE\n    > Data from client {client_id} received: {header["Text"]}, {header["Language"]}')
 
         if client_id not in ws_queues.keys():
             ws_queues[client_id] = asyncio.Queue()
 
             # Start processing TTS requests for this client in a separate task
-            asyncio.create_task(process_tts_requests(tts_model, audio_conv, ws, client_id))
+            asyncio.create_task(process_tts_requests(tts_model, audio_conv, ws, client_id, clients))
 
-        client_exists = await clients.client_exists_async(client_id=client_id)
-        if not client_exists:
-            async with aiofiles.open('def.wav', 'rb') as file:
-                client_voice = await file.read()
-            await clients.add_client_async(client_id=client_id, voice=client_voice)
-        else:
-            client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
-
-        client_voice_path = await asyncio.to_thread(audio_conv.bytes_to_wav,
-                                                    audiobytes=client_voice,
-                                                    res_path=f'cl {client_id} target_voice.wav')
-
-        print(f"    > Data from client {client_id} received: {header['Text']}, {header['Language']}")
-
-        queue = ws_queues[client_id]
-        await queue.put((header['Text'], client_voice_path, header['Language'], client_id))
+        await ws_queues[client_id].put((header['Text'], header['Language'], client_id))
 
     except Exception as ex:
-        print(f'     > Error occured: {ex}')
+        async with aiofiles.open(FILE_NAME, 'a') as f:
+            await f.write(f'\n     > Error occured: {ex}')
 
 
 def on_open(ws: WebSocket):
-    print("WebSocket opened")
+    with open(FILE_NAME, 'a') as f:
+        f.write('\nWebSocket opened')
 
 
 def on_close(ws: WebSocket, msg:str):
-    print("WebSocket closed")
+    print('closed:', ws.get_remote_address())
+    with open(FILE_NAME, 'a') as f:
+        f.write('\nWebSocket closed')
 
 
 def run_server_tts():
@@ -134,7 +164,7 @@ def run_server_tts():
     app.ws('/', {
             "compression": CompressOptions.SHARED_COMPRESSOR,
             "max_payload_length": 16 * 1024 * 1024,
-            "idle_timeout": 300, 
+            "idle_timeout": 0, 
             "open": lambda ws: on_open(ws),
             "message": lambda ws, msg, opcode: asyncio.create_task(
                 handle_tts(ws, msg, clients, tts_model, audio_conv)),
