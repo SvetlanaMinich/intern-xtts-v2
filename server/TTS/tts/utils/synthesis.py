@@ -125,6 +125,7 @@ def synthesis(
     do_trim_silence=False,
     d_vector=None,
     language_id=None,
+    stream=None  # Add a single stream argument
 ):
     """Synthesize voice for the given text using Griffin-Lim vocoder or just compute output features to be passed to
     the vocoder model.
@@ -170,85 +171,92 @@ def synthesis(
     if use_cuda:
         device = "cuda"
 
-    # GST or Capacitron processing
-    # TODO: need to handle the case of setting both gst and capacitron to true somewhere
-    style_mel = None
-    if CONFIG.has("gst") and CONFIG.gst and style_wav is not None:
-        if isinstance(style_wav, dict):
-            style_mel = style_wav
-        else:
+     # If no stream is provided, create a new one
+    if stream is None:
+        stream = torch.cuda.Stream()
+
+    with torch.cuda.stream(stream):
+        # GST or Capacitron processing
+        # TODO: need to handle the case of setting both gst and capacitron to true somewhere
+        style_mel = None
+        if CONFIG.has("gst") and CONFIG.gst and style_wav is not None:
+            if isinstance(style_wav, dict):
+                style_mel = style_wav
+            else:
+                style_mel = compute_style_mel(style_wav, model.ap, device=device)
+
+        if CONFIG.has("capacitron_vae") and CONFIG.use_capacitron_vae and style_wav is not None:
             style_mel = compute_style_mel(style_wav, model.ap, device=device)
+            style_mel = style_mel.transpose(1, 2)  # [1, time, depth]
 
-    if CONFIG.has("capacitron_vae") and CONFIG.use_capacitron_vae and style_wav is not None:
-        style_mel = compute_style_mel(style_wav, model.ap, device=device)
-        style_mel = style_mel.transpose(1, 2)  # [1, time, depth]
+        language_name = None
+        if language_id is not None:
+            language = [k for k, v in model.language_manager.name_to_id.items() if v == language_id]
+            assert len(language) == 1, "language_id must be a valid language"
+            language_name = language[0]
 
-    language_name = None
-    if language_id is not None:
-        language = [k for k, v in model.language_manager.name_to_id.items() if v == language_id]
-        assert len(language) == 1, "language_id must be a valid language"
-        language_name = language[0]
+        # convert text to sequence of token IDs
+        text_inputs = np.asarray(
+            model.tokenizer.text_to_ids(text, language=language_name),
+            dtype=np.int32,
+        )
+        # pass tensors to backend
+        if speaker_id is not None:
+            speaker_id = id_to_torch(speaker_id, device=device)
 
-    # convert text to sequence of token IDs
-    text_inputs = np.asarray(
-        model.tokenizer.text_to_ids(text, language=language_name),
-        dtype=np.int32,
-    )
-    # pass tensors to backend
-    if speaker_id is not None:
-        speaker_id = id_to_torch(speaker_id, device=device)
+        if d_vector is not None:
+            d_vector = embedding_to_torch(d_vector, device=device)
 
-    if d_vector is not None:
-        d_vector = embedding_to_torch(d_vector, device=device)
+        if language_id is not None:
+            language_id = id_to_torch(language_id, device=device)
 
-    if language_id is not None:
-        language_id = id_to_torch(language_id, device=device)
+        if not isinstance(style_mel, dict):
+            # GST or Capacitron style mel
+            style_mel = numpy_to_torch(style_mel, torch.float, device=device)
+            if style_text is not None:
+                style_text = np.asarray(
+                    model.tokenizer.text_to_ids(style_text, language=language_id),
+                    dtype=np.int32,
+                )
+                style_text = numpy_to_torch(style_text, torch.long, device=device)
+                style_text = style_text.unsqueeze(0)
 
-    if not isinstance(style_mel, dict):
-        # GST or Capacitron style mel
-        style_mel = numpy_to_torch(style_mel, torch.float, device=device)
-        if style_text is not None:
-            style_text = np.asarray(
-                model.tokenizer.text_to_ids(style_text, language=language_id),
-                dtype=np.int32,
-            )
-            style_text = numpy_to_torch(style_text, torch.long, device=device)
-            style_text = style_text.unsqueeze(0)
+        text_inputs = numpy_to_torch(text_inputs, torch.long, device=device)
+        text_inputs = text_inputs.unsqueeze(0)
+        # synthesize voice
+        outputs = run_model_torch(
+            model,
+            text_inputs,
+            speaker_id,
+            style_mel,
+            style_text,
+            d_vector=d_vector,
+            language_id=language_id,
+        )
+        model_outputs = outputs["model_outputs"]
+        model_outputs = model_outputs[0].data.cpu().numpy()
+        alignments = outputs["alignments"]
 
-    text_inputs = numpy_to_torch(text_inputs, torch.long, device=device)
-    text_inputs = text_inputs.unsqueeze(0)
-    # synthesize voice
-    outputs = run_model_torch(
-        model,
-        text_inputs,
-        speaker_id,
-        style_mel,
-        style_text,
-        d_vector=d_vector,
-        language_id=language_id,
-    )
-    model_outputs = outputs["model_outputs"]
-    model_outputs = model_outputs[0].data.cpu().numpy()
-    alignments = outputs["alignments"]
+        # convert outputs to numpy
+        # plot results
+        wav = None
+        model_outputs = model_outputs.squeeze()
+        if model_outputs.ndim == 2:  # [T, C_spec]
+            if use_griffin_lim:
+                wav = inv_spectrogram(model_outputs, model.ap, CONFIG)
+                # trim silence
+                if do_trim_silence:
+                    wav = trim_silence(wav, model.ap)
+        else:  # [T,]
+            wav = model_outputs
+        return_dict = {
+            "wav": wav,
+            "alignments": alignments,
+            "text_inputs": text_inputs,
+            "outputs": outputs,
+        }
 
-    # convert outputs to numpy
-    # plot results
-    wav = None
-    model_outputs = model_outputs.squeeze()
-    if model_outputs.ndim == 2:  # [T, C_spec]
-        if use_griffin_lim:
-            wav = inv_spectrogram(model_outputs, model.ap, CONFIG)
-            # trim silence
-            if do_trim_silence:
-                wav = trim_silence(wav, model.ap)
-    else:  # [T,]
-        wav = model_outputs
-    return_dict = {
-        "wav": wav,
-        "alignments": alignments,
-        "text_inputs": text_inputs,
-        "outputs": outputs,
-    }
+    torch.cuda.synchronize()
     return return_dict
 
 

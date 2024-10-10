@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 import aiofiles
+from concurrent.futures import ProcessPoolExecutor
 
 from xtts2 import XTTS_v2
 from AudioConverter_sv import AudioConverter
@@ -38,19 +39,13 @@ async def text_to_speech(tts_model: XTTS_v2,
                          language: str = 'en'):
 
     result_path = os.curdir + fr'\{client_id}.wav'
-    
-    async with aiofiles.open(FILE_NAME, 'a') as f:
-        await f.write(f'\n     TTS started: {text}')
 
-    tts_model.run(
+    await asyncio.to_thread(tts_model.run,
                             text=text,
                             speaker_wav=client_voice_path,
-                            language=language, 
+                            language=language,
                             file_path=result_path)
-
-    async with aiofiles.open(FILE_NAME, 'a') as f:
-        await f.write(f'\n     Converting result from 24 to 16k wav')
-
+    
     audio_conv.wav24_to_wav16(path_to_wav=result_path)
 
     async with aiofiles.open(result_path, 'rb') as voice:
@@ -64,25 +59,11 @@ async def process_tts_requests(tts_model: XTTS_v2,
                                audio_conv: AudioConverter,
                                ws:WebSocket,
                                client_id:int,
-                               clients:JsonStorage):
+                               client_voice_path:str):
     while True:
         queue = ws_queues[client_id]
         # Wait for a request from the queue
         text, language, client_id = await queue.get()
-
-        if not os.path.exists(f'cl {client_id} target_voice.wav'):
-            client_exists = await clients.client_exists_async(client_id=client_id)
-            if not client_exists:
-                async with aiofiles.open('def.wav', 'rb') as file:
-                    client_voice = await file.read()
-                await clients.add_client_async(client_id=client_id, voice=client_voice)
-            else:
-                client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
-
-            client_voice_path = audio_conv.bytes_to_wav(audiobytes=client_voice,
-                                                        res_path=f'cl {client_id} target_voice.wav')
-        else:
-            client_voice_path = f'cl {client_id} target_voice.wav'
 
         async with aiofiles.open(FILE_NAME, 'a') as f:
             await f.write(f'\n     Task started: {text}')
@@ -98,7 +79,6 @@ async def process_tts_requests(tts_model: XTTS_v2,
                                                 language=language,
                                                 audio_conv=audio_conv,
                                                 client_id=client_id)
-            
             # res_in_bytes = res_in_bytes[44:]
             ws.send(res_in_bytes)
 
@@ -112,7 +92,7 @@ async def process_tts_requests(tts_model: XTTS_v2,
         async with aiofiles.open(FILE_NAME, 'a') as f:
             await f.write(f"\n    > Result {len(res_in_bytes)} sent to client {client_id}")
 
-        await asyncio.sleep(0.1)
+        # await asyncio.sleep(0.1)
 
         queue.task_done()  # Indicate that the task is done
 
@@ -131,14 +111,55 @@ async def handle_tts(ws:WebSocket, msg,
         if client_id not in ws_queues.keys():
             ws_queues[client_id] = asyncio.Queue()
 
+            if not os.path.exists(f'cl {client_id} target_voice.wav'):
+                client_exists = await clients.client_exists_async(client_id=client_id)
+                if not client_exists:
+                    async with aiofiles.open('def.wav', 'rb') as file:
+                        client_voice = await file.read()
+                    await clients.add_client_async(client_id=client_id, voice=client_voice)
+                else:
+                    client_voice = await clients.get_voice_by_client_id_async(client_id=client_id)
+
+                client_voice_path = audio_conv.bytes_to_wav(audiobytes=client_voice,
+                                                            res_path=f'cl {client_id} target_voice.wav')
+            else:
+                client_voice_path = f'cl {client_id} target_voice.wav'
             # Start processing TTS requests for this client in a separate task
-            asyncio.create_task(process_tts_requests(tts_model, audio_conv, ws, client_id, clients))
+            asyncio.create_task(process_tts_requests(tts_model, audio_conv, ws, client_id, client_voice_path))
 
         await ws_queues[client_id].put((header['Text'], header['Language'], client_id))
 
     except Exception as ex:
         async with aiofiles.open(FILE_NAME, 'a') as f:
             await f.write(f'\n     > Error occured: {ex}')
+
+
+def handle_tts_sync(ws:WebSocket, msg, 
+               clients:JsonStorage = None, 
+               tts_model:XTTS_v2 = None, 
+               audio_conv: AudioConverter = None):
+                     
+    try:
+        header = json.loads(msg.decode('utf-8'))
+        client_id = header['Client_id']
+        
+        if client_id not in ws_queues.keys():
+            ws_queues[client_id] = asyncio.Queue()
+
+            if not os.path.exists(f'cl {client_id} target_voice.wav'):
+                with open('def.wav', 'rb') as file:
+                    client_voice = file.read()
+                client_voice_path = audio_conv.bytes_to_wav(audiobytes=client_voice,
+                                                            res_path=f'cl {client_id} target_voice.wav')
+            else:
+                client_voice_path = f'cl {client_id} target_voice.wav'
+            # Start processing TTS requests for this client in a separate task
+            asyncio.create_task(process_tts_requests(tts_model, audio_conv, ws, client_id, client_voice_path))
+
+        ws_queues[client_id].put((header['Text'], header['Language'], client_id))
+
+    except Exception as ex:
+        print(f'\n     > Error occured: {ex}')
 
 
 def on_open(ws: WebSocket):
@@ -160,18 +181,20 @@ def run_server_tts():
     os.makedirs(name=clients_dir, exist_ok=True)
     clients = JsonStorage(path_to_json_dir=clients_dir)
 
-    app = App()
-    app.ws('/', {
-            "compression": CompressOptions.SHARED_COMPRESSOR,
-            "max_payload_length": 16 * 1024 * 1024,
-            "idle_timeout": 0, 
-            "open": lambda ws: on_open(ws),
-            "message": lambda ws, msg, opcode: asyncio.create_task(
-                handle_tts(ws, msg, clients, tts_model, audio_conv)),
-            "close": lambda ws, code, msg: on_close(ws, msg)
-        })
-    app.listen(AppListenOptions(PORT, HOST), lambda config: print(f"Listening on port {config.port}"))
-    app.run()
+    with ProcessPoolExecutor(max_workers=10) as executor:
+        app = App()
+        app.ws('/', {
+                "compression": CompressOptions.SHARED_COMPRESSOR,
+                "max_payload_length": 16 * 1024 * 1024,
+                "idle_timeout": 0, 
+                "open": lambda ws: on_open(ws),
+                "message": lambda ws, msg, opcode: executor.submit(
+                    asyncio.create_task(
+                        handle_tts(ws, msg, clients, tts_model, audio_conv))),
+                "close": lambda ws, code, msg: on_close(ws, msg)
+            })
+        app.listen(AppListenOptions(PORT, HOST), lambda config: print(f"Listening on port {config.port}"))
+        app.run()
 
 
 if __name__ == "__main__":

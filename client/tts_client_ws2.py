@@ -9,13 +9,14 @@ import soundfile as sf
 
 BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
-HOST = '213.108.196.111'
-PORT = 20199
+HOST = '218.172.74.127'
+PORT = 42183
 
 # HOST = 'localhost'
 # PORT = 8083
 
-# 213.108.196.111:20199 -> 8083/tcp
+# 213.108.196.111:20199 -> 8083/tcp 3080
+# 218.172.74.127:42183 -> 8083/tcp 4090
 
 RESULT_PATH = 'C:/intern/xtts-2/client/res/res.wav'
 
@@ -39,16 +40,33 @@ def make_additional_headers(id:int,
 async def run_client(client_id: int, text:str, lang:str='en'):
     s_conv = AudioConverter()
     async with connect(f'ws://{HOST}:{PORT}/') as ws:
-        client_id = "Aaaaaaaaaaaaaaaaaa16"
-        text = 'The sun was setting over the horizon, painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean, and the waves softly lapped against the shore. It was the perfect evening, one that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me, and I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.'
+        client_id = "Aaaaaaaaaaaaaaaaaaa4"
+        text = 'The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.'
         lang = 'en'
         desc_header = make_additional_headers(client_id, text, lang)
         data = json.dumps(desc_header).encode('utf-8')
         print(data)
         await ws.send(data)
+
+        client_id = "Aaaaaaaaaaaaaaaaaaa4"
+        text = 'The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.'
+        lang = 'en'
+        desc_header = make_additional_headers(client_id, text, lang)
+        data = json.dumps(desc_header).encode('utf-8')
+        print(data)
+        await ws.send(data)
+
+        client_id = "Aaaaaaaaaaaaaaaaaaa4"
+        text = 'The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.'
+        lang = 'en'
+        desc_header = make_additional_headers(client_id, text, lang)
+        data = json.dumps(desc_header).encode('utf-8')
+        print(data)
+        await ws.send(data)
+
         
         num = 0
-        while num < 5:
+        while num < 27:
             chunk = await ws.recv()
             _ = s_conv.bytes_to_wav(chunk, 
                                 path_to_res=RESULT_PATH[:-4] + f'{num}.wav')

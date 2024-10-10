@@ -1,0 +1,674 @@
+         849630 function calls (726458 primitive calls) in 3.189 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    3.189    3.189 /root/tts_test.py:47(run_model)
+        1    0.000    0.000    3.189    3.189 /root/tts_test.py:30(run)
+        1    0.000    0.000    3.189    3.189 /root/TTS/tts/models/xtts.py:382(synthesize)
+      6/1    0.000    0.000    3.189    3.189 /usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py:112(decorate_context)
+        1    0.000    0.000    3.189    3.189 /root/TTS/tts/models/xtts.py:421(full_inference)
+        1    0.000    0.000    2.932    2.932 /root/TTS/tts/models/xtts.py:502(inference)
+59291/167    0.055    0.000    2.871    0.017 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1514(_wrapped_call_impl)
+59291/167    0.111    0.000    2.871    0.017 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1520(_call_impl)
+        1    0.000    0.000    2.784    2.784 /root/TTS/tts/layers/xtts/gpt.py:583(generate)
+        1    0.001    0.001    2.765    2.765 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1395(generate)
+        1    0.021    0.021    2.758    2.758 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:2672(sample)
+      146    0.004    0.000    2.590    0.018 /root/TTS/tts/layers/xtts/gpt_inference.py:55(forward)
+      147    0.034    0.000    2.574    0.018 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:743(forward)
+     4410    0.107    0.000    2.484    0.001 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:377(forward)
+     4410    0.069    0.000    1.445    0.000 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:290(forward)
+     4410    0.222    0.000    0.729    0.000 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:182(_attn)
+     4410    0.032    0.000    0.690    0.000 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:353(forward)
+    17640    0.082    0.000    0.583    0.000 /usr/local/lib/python3.10/dist-packages/transformers/pytorch_utils.py:106(forward)
+    17640    0.422    0.000    0.422    0.000 {built-in method torch.addmm}
+     4410    0.239    0.000    0.318    0.000 /usr/local/lib/python3.10/dist-packages/transformers/activations.py:55(forward)
+        1    0.000    0.000    0.258    0.258 /root/TTS/tts/models/xtts.py:325(get_conditioning_latents)
+      109    0.236    0.002    0.237    0.002 {built-in method torch.conv1d}
+        1    0.000    0.000    0.206    0.206 /root/TTS/tts/models/xtts.py:316(get_speaker_embedding)
+     9114    0.020    0.000    0.174    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/normalization.py:195(forward)
+     8823    0.167    0.000    0.167    0.000 {built-in method torch.matmul}
+      107    0.000    0.000    0.150    0.001 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:309(forward)
+     9114    0.020    0.000    0.148    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2528(layer_norm)
+      107    0.000    0.000    0.146    0.001 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:301(_conv_forward)
+        1    0.000    0.000    0.124    0.124 /root/TTS/tts/layers/xtts/hifigan_decoder.py:674(forward)
+        1    0.000    0.000    0.124    0.124 /root/TTS/tts/layers/xtts/hifigan_decoder.py:266(forward)
+     9114    0.117    0.000    0.117    0.000 {built-in method torch.layer_norm}
+        1    0.000    0.000    0.113    0.113 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:1474(resample)
+     9003    0.103    0.000    0.103    0.000 {built-in method torch.cat}
+       12    0.001    0.000    0.100    0.008 /root/TTS/tts/layers/xtts/hifigan_decoder.py:105(forward)
+  177/158    0.001    0.000    0.097    0.001 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:213(forward)
+        1    0.000    0.000    0.092    0.092 /root/TTS/tts/layers/xtts/hifigan_decoder.py:524(forward)
+     8983    0.090    0.000    0.090    0.000 {method 'to' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.088    0.088 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:1444(_apply_sinc_resample_kernel)
+      292    0.003    0.000    0.086    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:71(__call__)
+    13381    0.011    0.000    0.079    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/dropout.py:57(forward)
+     8821    0.075    0.000    0.075    0.000 {built-in method torch.full}
+   113792    0.075    0.000    0.075    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1682(__getattr__)
+    53254    0.068    0.000    0.068    0.000 {method 'view' of 'torch._C._TensorBase' objects}
+    13381    0.035    0.000    0.067    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:1249(dropout)
+    13230    0.021    0.000    0.059    0.000 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:274(_split_heads)
+     4557    0.058    0.000    0.058    0.000 {built-in method torch.where}
+     4422    0.017    0.000    0.057    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:849(split)
+        1    0.000    0.000    0.049    0.049 /root/TTS/tts/models/xtts.py:257(get_gpt_cond_latents)
+     4412    0.047    0.000    0.047    0.000 {built-in method torch.pow}
+     4557    0.006    0.000    0.047    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:1826(softmax)
+     4707    0.041    0.000    0.041    0.000 {method 'softmax' of 'torch._C._TensorBase' objects}
+        2    0.000    0.000    0.041    0.021 /root/TTS/tts/layers/xtts/gpt.py:353(get_style_emb)
+       16    0.000    0.000    0.040    0.002 /root/TTS/tts/layers/xtts/hifigan_decoder.py:370(forward)
+     4410    0.014    0.000    0.037    0.000 /usr/local/lib/python3.10/dist-packages/transformers/models/gpt2/modeling_gpt2.py:282(_merge_heads)
+        2    0.000    0.000    0.037    0.018 /root/TTS/tts/layers/xtts/latent_encoder.py:135(forward)
+       36    0.000    0.000    0.035    0.001 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:459(forward)
+       36    0.000    0.000    0.034    0.001 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:451(_conv_forward)
+       36    0.034    0.001    0.034    0.001 {built-in method torch.conv2d}
+     4422    0.033    0.000    0.033    0.000 {built-in method torch.split}
+    17658    0.032    0.000    0.032    0.000 {method 'permute' of 'torch._C._TensorBase' objects}
+    66819    0.031    0.000    0.031    0.000 {method 'size' of 'torch._C._TensorBase' objects}
+     4411    0.031    0.000    0.031    0.000 {built-in method torch.tanh}
+      587    0.001    0.000    0.031    0.000 /usr/lib/python3.10/inspect.py:3252(signature)
+      587    0.001    0.000    0.030    0.000 /usr/lib/python3.10/inspect.py:2998(from_callable)
+    59292    0.030    0.000    0.030    0.000 {built-in method torch._C._get_tracing_state}
+ 1174/587    0.005    0.000    0.029    0.000 /usr/lib/python3.10/inspect.py:2375(_signature_from_callable)
+      146    0.026    0.000    0.026    0.000 {built-in method torch.multinomial}
+        1    0.015    0.015    0.025    0.025 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:1345(_get_sinc_resample_kernel)
+      298    0.001    0.000    0.024    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/sparse.py:161(forward)
+      298    0.000    0.000    0.023    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2122(embedding)
+      298    0.023    0.000    0.023    0.000 {built-in method torch.embedding}
+       12    0.000    0.000    0.022    0.002 /root/TTS/tts/layers/xtts/latent_encoder.py:100(forward)
+        1    0.001    0.001    0.021    0.021 /root/TTS/tts/layers/xtts/gpt.py:370(forward)
+      146    0.005    0.000    0.020    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:445(__call__)
+    13381    0.020    0.000    0.020    0.000 {built-in method torch.dropout}
+        1    0.000    0.000    0.019    0.019 /root/TTS/tts/layers/xtts/gpt.py:561(compute_embeddings)
+      146    0.003    0.000    0.019    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:505(__call__)
+        1    0.000    0.000    0.017    0.017 /root/TTS/tts/layers/xtts/gpt.py:251(get_logits)
+      587    0.006    0.000    0.016    0.000 /usr/lib/python3.10/inspect.py:2280(_signature_from_function)
+    17838    0.009    0.000    0.014    0.000 /usr/local/lib/python3.10/dist-packages/torch/_VF.py:26(__getattr__)
+        3    0.000    0.000    0.014    0.005 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:4697(normalize)
+        3    0.000    0.000    0.014    0.005 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:696(norm)
+        3    0.000    0.000    0.014    0.005 /usr/local/lib/python3.10/dist-packages/torch/functional.py:1480(norm)
+        3    0.013    0.004    0.013    0.004 {built-in method torch._C._linalg.linalg_vector_norm}
+      146    0.006    0.000    0.013    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:330(__call__)
+     4421    0.012    0.000    0.012    0.000 {method 'transpose' of 'torch._C._TensorBase' objects}
+      146    0.011    0.000    0.011    0.000 {built-in method torch.topk}
+      146    0.005    0.000    0.011    0.000 /root/TTS/tts/layers/xtts/gpt_inference.py:24(prepare_inputs_for_generation)
+        3    0.000    0.000    0.010    0.003 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:611(forward)
+      299    0.001    0.000    0.010    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:34(wrapped)
+      292    0.000    0.000    0.009    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:862(dtype)
+      292    0.001    0.000    0.009    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:237(get_parameter_dtype)
+     9164    0.005    0.000    0.008    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/__init__.py:36(__get__)
+      604    0.001    0.000    0.008    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2170(parameters)
+      199    0.000    0.000    0.008    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py:113(forward)
+      145    0.001    0.000    0.008    0.000 /root/TTS/tts/layers/xtts/gpt.py:39(get_fixed_embedding)
+        2    0.000    0.000    0.007    0.004 /root/TTS/tts/models/xtts.py:21(wav_to_mel_cloning)
+      199    0.007    0.000    0.007    0.000 {built-in method torch._C._nn.linear}
+      604    0.000    0.000    0.007    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2195(named_parameters)
+       16    0.000    0.000    0.006    0.000 /root/TTS/tts/layers/xtts/hifigan_decoder.py:349(forward)
+        3    0.000    0.000    0.006    0.002 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:100(forward)
+        3    0.000    0.000    0.006    0.002 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:57(spectrogram)
+      292    0.006    0.000    0.006    0.000 {method 'cumsum' of 'torch._C._TensorBase' objects}
+      604    0.002    0.000    0.006    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2156(_named_members)
+        4    0.000    0.000    0.006    0.002 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:786(forward)
+      146    0.006    0.000    0.006    0.000 {built-in method torch.sort}
+    22419    0.006    0.000    0.006    0.000 {built-in method builtins.getattr}
+      292    0.006    0.000    0.006    0.000 {method 'masked_fill' of 'torch._C._TensorBase' objects}
+      293    0.002    0.000    0.006    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:330(__post_init__)
+        1    0.000    0.000    0.006    0.006 /root/TTS/tts/layers/xtts/hifigan_decoder.py:414(forward)
+        4    0.006    0.001    0.006    0.001 {built-in method torch.conv_transpose1d}
+      587    0.002    0.000    0.005    0.000 /usr/lib/python3.10/inspect.py:1959(_signature_bound_method)
+     1174    0.004    0.000    0.005    0.000 /usr/lib/python3.10/inspect.py:2920(__init__)
+     4434    0.005    0.000    0.005    0.000 {method 'type' of 'torch._C._TensorBase' objects}
+       12    0.000    0.000    0.005    0.000 /root/TTS/tts/layers/xtts/latent_encoder.py:11(forward)
+        6    0.005    0.001    0.005    0.001 {method 'pow' of 'torch._C._TensorBase' objects}
+       12    0.000    0.000    0.005    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/normalization.py:278(forward)
+       12    0.000    0.000    0.005    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2546(group_norm)
+     1786    0.003    0.000    0.005    0.000 /usr/lib/python3.10/inspect.py:2637(__init__)
+    22516    0.005    0.000    0.005    0.000 {built-in method torch._C._has_torch_function_unary}
+       12    0.005    0.000    0.005    0.000 {built-in method torch.group_norm}
+        2    0.000    0.000    0.004    0.002 /root/TTS/tts/layers/xtts/perceiver_encoder.py:265(forward)
+      292    0.000    0.000    0.004    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:907(__rsub__)
+      146    0.001    0.000    0.004    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:849(_update_model_kwargs_for_generation)
+      149    0.004    0.000    0.004    0.000 {built-in method torch.tensor}
+17171/17116    0.003    0.000    0.004    0.000 {built-in method builtins.isinstance}
+      146    0.004    0.000    0.004    0.000 {method 'prod' of 'torch._C._TensorBase' objects}
+      146    0.000    0.000    0.004    0.000 <string>:2(__init__)
+      146    0.004    0.000    0.004    0.000 {built-in method torch.gather}
+        3    0.000    0.000    0.004    0.001 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:402(forward)
+       76    0.000    0.000    0.004    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/utils/parametrize.py:353(get_parametrized)
+      292    0.004    0.000    0.004    0.000 {built-in method torch.rsub}
+       12    0.001    0.000    0.004    0.000 /root/TTS/tts/layers/xtts/latent_encoder.py:48(forward)
+5114/2711    0.003    0.000    0.004    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2335(named_modules)
+        3    0.003    0.001    0.003    0.001 {method 'abs' of 'torch._C._TensorBase' objects}
+     9164    0.003    0.000    0.003    0.000 {built-in method torch._C._get_cudnn_enabled}
+      587    0.001    0.000    0.003    0.000 /usr/lib/python3.10/inspect.py:3014(replace)
+        1    0.003    0.003    0.003    0.003 {built-in method torch.sqrt}
+        1    0.003    0.003    0.003    0.003 {method 'clamp_' of 'torch._C._TensorBase' objects}
+       76    0.000    0.000    0.003    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/utils/parametrize.py:261(forward)
+     9465    0.003    0.000    0.003    0.000 {built-in method torch._C._has_torch_function_variadic}
+      146    0.003    0.000    0.003    0.000 {method 'scatter' of 'torch._C._TensorBase' objects}
+        1    0.001    0.001    0.003    0.003 /root/TTS/tts/models/xtts.py:69(load_audio)
+        1    0.000    0.000    0.003    0.003 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/instancenorm.py:70(forward)
+       32    0.000    0.000    0.003    0.000 /usr/local/lib/python3.10/dist-packages/torch/functional.py:190(einsum)
+      146    0.003    0.000    0.003    0.000 {method 'tile' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.003    0.003 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/instancenorm.py:35(_apply_instance_norm)
+        1    0.000    0.000    0.003    0.003 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2492(instance_norm)
+        1    0.002    0.002    0.002    0.002 {built-in method torch.instance_norm}
+        2    0.000    0.000    0.002    0.001 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:556(__init__)
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py:1513(forward)
+     4410    0.002    0.000    0.002    0.000 {method 'contiguous' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:693(_prepare_attention_mask_for_generation)
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:1046(__contains__)
+       37    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py:137(forward)
+        2    0.002    0.001    0.002    0.001 {built-in method torch.ceil}
+        3    0.002    0.001    0.002    0.001 {method 'any' of 'torch._C._TensorBase' objects}
+      147    0.000    0.000    0.002    0.000 /root/TTS/tts/layers/xtts/gpt.py:17(null_position_embeddings)
+        4    0.000    0.000    0.002    0.001 /root/TTS/tts/layers/xtts/perceiver_encoder.py:305(forward)
+       16    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/pooling.py:1193(forward)
+       16    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:1214(adaptive_avg_pool2d)
+        3    0.000    0.000    0.002    0.001 /usr/local/lib/python3.10/dist-packages/torch/functional.py:507(stft)
+        2    0.000    0.000    0.002    0.001 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:378(__init__)
+       16    0.002    0.000    0.002    0.000 {built-in method torch._C._nn.adaptive_avg_pool2d}
+     1611    0.002    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:405(__setattr__)
+        5    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:888(to_json_string)
+        2    0.000    0.000    0.002    0.001 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:521(melscale_fbanks)
+        3    0.002    0.001    0.002    0.001 {built-in method torch.sum}
+      149    0.002    0.000    0.002    0.000 {built-in method torch.zeros}
+        3    0.002    0.001    0.002    0.001 {built-in method torch.stft}
+       37    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2447(batch_norm)
+       72    0.002    0.000    0.002    0.000 {method 'reshape' of 'torch._C._TensorBase' objects}
+      587    0.001    0.000    0.002    0.000 /usr/lib/python3.10/inspect.py:66(get_annotations)
+      293    0.001    0.000    0.002    0.000 /usr/lib/python3.10/dataclasses.py:1187(fields)
+       37    0.002    0.000    0.002    0.000 {built-in method torch.batch_norm}
+      146    0.002    0.000    0.002    0.000 {method 'new_ones' of 'torch._C._TensorBase' objects}
+     1786    0.001    0.000    0.002    0.000 /usr/lib/python3.10/enum.py:359(__call__)
+       77    0.000    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:1632(leaky_relu)
+      146    0.002    0.000    0.002    0.000 {method 'scatter_' of 'torch._C._TensorBase' objects}
+      587    0.001    0.000    0.002    0.000 /usr/lib/python3.10/inspect.py:612(unwrap)
+      146    0.002    0.000    0.002    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:281(__call__)
+  1124/10    0.001    0.000    0.002    0.000 /usr/lib/python3.10/copy.py:128(deepcopy)
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/torchaudio/_backend/utils.py:117(load)
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/torchaudio/_backend/soundfile.py:17(load)
+        1    0.000    0.000    0.002    0.002 /usr/local/lib/python3.10/dist-packages/torchaudio/_backend/soundfile_backend.py:139(load)
+       14    0.002    0.000    0.002    0.000 {built-in method torch.nn.functional.pad}
+    22/10    0.000    0.000    0.001    0.000 /usr/lib/python3.10/copy.py:227(_deepcopy_dict)
+      150    0.001    0.000    0.001    0.000 {method 'max' of 'torch._C._TensorBase' objects}
+       77    0.001    0.000    0.001    0.000 {built-in method torch._C._nn.leaky_relu}
+       32    0.001    0.000    0.001    0.000 {built-in method torch.einsum}
+  438/146    0.001    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:398(__getitem__)
+        7    0.001    0.000    0.001    0.000 {built-in method torch.arange}
+        2    0.001    0.001    0.001    0.001 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:495(_create_triangular_filterbank)
+        8    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:867(to_dict)
+        1    0.001    0.001    0.001    0.001 {method 'log' of 'torch._C._TensorBase' objects}
+     4434    0.001    0.000    0.001    0.000 {built-in method math.sqrt}
+        1    0.000    0.000    0.001    0.001 /root/TTS/tts/layers/xtts/tokenizer.py:646(encode)
+      146    0.001    0.000    0.001    0.000 {method 'masked_fill_' of 'torch._C._TensorBase' objects}
+       76    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/utils/parametrizations.py:298(forward)
+       16    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py:291(forward)
+        4    0.000    0.000    0.001    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:206(forward)
+       16    0.001    0.000    0.001    0.000 {built-in method torch.sigmoid}
+      146    0.001    0.000    0.001    0.000 {method 'ne' of 'torch._C._TensorBase' objects}
+       76    0.001    0.000    0.001    0.000 {built-in method torch._weight_norm}
+        1    0.000    0.000    0.001    0.001 /usr/local/lib/python3.10/dist-packages/soundfile.py:809(read)
+     2373    0.001    0.000    0.001    0.000 /usr/lib/python3.10/inspect.py:2969(<genexpr>)
+        4    0.001    0.000    0.001    0.000 {built-in method torch._C._nn.gelu}
+        1    0.000    0.000    0.001    0.001 /usr/local/lib/python3.10/dist-packages/soundfile.py:1333(_array_io)
+      146    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:424(to_tuple)
+        1    0.000    0.000    0.001    0.001 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:927(from_model_config)
+        3    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:844(to_diff_dict)
+        1    0.001    0.001    0.001    0.001 {method 'encode' of 'tokenizers.Tokenizer' objects}
+        1    0.001    0.001    0.001    0.001 /usr/local/lib/python3.10/dist-packages/soundfile.py:1346(_cdata_io)
+      586    0.000    0.000    0.001    0.000 {built-in method builtins.all}
+      460    0.001    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/configuration_utils.py:262(__getattribute__)
+      596    0.001    0.000    0.001    0.000 {method 'unsqueeze' of 'torch._C._TensorBase' objects}
+       18    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:459(reduce)
+      146    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/stopping_criteria.py:130(__call__)
+      146    0.001    0.000    0.001    0.000 {method 'mul' of 'torch._C._TensorBase' objects}
+      2/1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:1022(_find_and_load)
+      4/2    0.000    0.000    0.001    0.000 {built-in method builtins.hash}
+        2    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:346(__hash__)
+      2/1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:987(_find_and_load_unlocked)
+     1502    0.001    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2224(<lambda>)
+      438    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:428(<genexpr>)
+      586    0.001    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:411(__setitem__)
+        1    0.000    0.000    0.001    0.001 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:349(__eq__)
+       16    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:536(rearrange)
+        4    0.000    0.000    0.001    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:108(forward)
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap>:664(_load_unlocked)
+      147    0.000    0.000    0.001    0.000 {built-in method builtins.any}
+       50    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py:100(forward)
+     5416    0.001    0.000    0.001    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    0.001    0.001 <frozen importlib._bootstrap_external>:877(exec_module)
+     1174    0.000    0.000    0.001    0.000 /usr/lib/python3.10/inspect.py:277(isfunction)
+       50    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:1460(relu)
+       96    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:288(__getitem__)
+        3    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:231(_get_spec_norms)
+        1    0.001    0.001    0.001    0.001 {built-in method torch.cos}
+        6    0.000    0.000    0.001    0.000 /usr/local/lib/python3.10/dist-packages/torch/jit/__init__.py:193(isinstance)
+        1    0.000    0.000    0.001    0.001 /usr/lib/python3.10/warnings.py:96(_showwarnmsg)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_jit_internal.py:1428(_isinstance)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/warnings.py:20(_showwarnmsg_impl)
+       11    0.000    0.000    0.000    0.000 /usr/lib/python3.10/abc.py:117(__instancecheck__)
+      150    0.000    0.000    0.000    0.000 {method 'squeeze' of 'torch._C._TensorBase' objects}
+      292    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/stopping_criteria.py:132(<genexpr>)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/warnings.py:117(_formatwarnmsg)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/warnings.py:35(_formatwarnmsg_impl)
+     1904    0.000    0.000    0.000    0.000 /usr/lib/python3.10/dataclasses.py:1202(<genexpr>)
+       11    0.000    0.000    0.000    0.000 {built-in method _abc._abc_instancecheck}
+        5    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/__init__.py:183(dumps)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.any}
+    112/2    0.000    0.000    0.000    0.000 /usr/lib/python3.10/abc.py:121(__subclasscheck__)
+    112/2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/linecache.py:26(getline)
+        1    0.000    0.000    0.000    0.000 {method 'sin' of 'torch._C._TensorBase' objects}
+1585/1391    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+     1829    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/linecache.py:36(getlines)
+       49    0.000    0.000    0.000    0.000 {built-in method torch.relu_}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1289(_validate_model_kwargs)
+      741    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/linecache.py:80(updatecache)
+        5    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:182(encode)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:798(from_dict)
+        9    0.000    0.000    0.000    0.000 /root/TTS/tts/models/xtts.py:253(device)
+       12    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:314(<lambda>)
+        4    0.000    0.000    0.000    0.000 {method 'cpu' of 'torch._C._TensorBase' objects}
+     1786    0.000    0.000    0.000    0.000 /usr/lib/python3.10/enum.py:678(__new__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:233(_call_with_frames_removed)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/opt_einsum/__init__.py:1(<module>)
+      228    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/utils/parametrize.py:268(<genexpr>)
+       18    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:229(_apply_recipe)
+     2985    0.000    0.000    0.000    0.000 /usr/lib/python3.10/inspect.py:2687(name)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:357(__repr__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:921(_find_spec)
+       10    0.000    0.000    0.000    0.000 {built-in method builtins.next}
+      587    0.000    0.000    0.000    0.000 /usr/lib/python3.10/inspect.py:632(_is_wrapper)
+       96    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:279(_get_abs_string_index)
+     1611    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:340(<genexpr>)
+        4    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/gpt.py:31(forward)
+     2376    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:288(_prepare_transformation_recipe)
+      436    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:413(_iterencode)
+      604    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:1002(__hash__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1431(find_spec)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:3813(interpolate)
+     3012    0.000    0.000    0.000    0.000 {method 'items' of 'collections.OrderedDict' objects}
+      177    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:313(__iter__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1399(_get_spec)
+      177    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:205(__iter__)
+      586    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py:344(<genexpr>)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/configuration_utils.py:893(to_dict)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:594(repeat)
+      146    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/stopping_criteria.py:65(__call__)
+        2    0.000    0.000    0.000    0.000 {built-in method torch._C._nn.upsample_linear1d}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/transforms/_transforms.py:63(__init__)
+        7    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1536(find_spec)
+     1809    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
+     2373    0.000    0.000    0.000    0.000 /usr/lib/python3.10/inspect.py:2699(kind)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:556(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'readlines' of '_io._IOBase' objects}
+     1884    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+     1762    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
+       55    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1697(__setattr__)
+     1757    0.000    0.000    0.000    0.000 {method 'keys' of 'collections.OrderedDict' objects}
+      148    0.000    0.000    0.000    0.000 {method 'long' of 'torch._C._TensorBase' objects}
+  440/436    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:333(_iterencode_dict)
+      146    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:834(_extract_past_from_model_output)
+        2    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:177(forward)
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:630(preprocess_text)
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:551(multilingual_cleaners)
+      587    0.000    0.000    0.000    0.000 {method 'values' of 'mappingproxy' objects}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:950(get_code)
+       12    0.000    0.000    0.000    0.000 {built-in method torch.softmax}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copy.py:259(_reconstruct)
+     1174    0.000    0.000    0.000    0.000 /usr/lib/python3.10/inspect.py:3006(parameters)
+     1198    0.000    0.000    0.000    0.000 /usr/lib/python3.10/inspect.py:2691(default)
+      147    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:973(get_head_mask)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.hann_window}
+       33    0.000    0.000    0.000    0.000 /usr/lib/python3.10/re.py:202(sub)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1054(to)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1190(_open)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/parsing.py:29(__init__)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.log}
+      587    0.000    0.000    0.000    0.000 {built-in method sys.getrecursionlimit}
+    19/11    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:832(dict_torch_dtype_to_str)
+       16    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:91(reshape)
+      297    0.000    0.000    0.000    0.000 {method 'is_floating_point' of 'torch._C._TensorBase' objects}
+       14    0.000    0.000    0.000    0.000 {built-in method posix.stat}
+      354    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+      331    0.000    0.000    0.000    0.000 {built-in method torch._C._has_torch_function}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/tokenize.py:390(open)
+      147    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+        2    0.000    0.000    0.000    0.000 {method 'mean' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:154(_reconstruct_from_shape_uncached)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.min}
+      6/2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:807(_apply)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:462(_mel_to_hz)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:259(__init__)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.max}
+      194    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:309(__len__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:807(_expand_inputs_for_generation)
+       21    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/parsing.py:49(add_axis_name)
+       12    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:140(_path_stat)
+       18    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:22(get_backend)
+       37    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:126(_path_join)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.clamp}
+     1101    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copy.py:182(_deepcopy_atomic)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:451(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'clip_' of 'torch._C._TensorBase' objects}
+        2    0.000    0.000    0.000    0.000 {method 'repeat_interleave' of 'torch._C._TensorBase' objects}
+       33    0.000    0.000    0.000    0.000 {method 'sub' of 're.Pattern' objects}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:235(expand_abbreviations_multilingual)
+        8    0.000    0.000    0.000    0.000 {method 'chunk' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:522(expand_numbers_multilingual)
+       55    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/parameter.py:8(__instancecheck__)
+      318    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1461(_create_info_struct)
+      365    0.000    0.000    0.000    0.000 {method 'values' of 'collections.OrderedDict' objects}
+       76    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py:457(__getitem__)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:496(register_buffer)
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/gpt.py:238(set_mel_padding)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1070(get_data)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:269(clone)
+        2    0.000    0.000    0.000    0.000 {built-in method torch.stack}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:670(_compile_bytecode)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:564(module_from_spec)
+        2    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/gpt.py:233(set_inputs_and_targets)
+       36    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py:414(_check_input_dim)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:854(device)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:911(__rdiv__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:204(get_parameter_device)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/tokenize.py:297(detect_encoding)
+        3    0.000    0.000    0.000    0.000 {method 'clamp_min' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:262(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:492(_init_module_attrs)
+        1    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:169(__enter__)
+       33    0.000    0.000    0.000    0.000 /usr/lib/python3.10/re.py:288(_compile)
+       16    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:256(transpose)
+        1    0.000    0.000    0.000    0.000 {built-in method torch.as_tensor}
+       24    0.000    0.000    0.000    0.000 {method 'float' of 'torch._C._TensorBase' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method torch.ones}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:262(add_axes)
+       37    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:128(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1316(_create_empty_array)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py:629(_output_padding)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/numpy/core/_dtype.py:328(_name_get)
+        2    0.000    0.000    0.000    0.000 {method 'numpy' of 'torch._C._TensorBase' objects}
+       12    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2430(_verify_batch_size)
+       23    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/parsing.py:126(check_axis_name_return_reason)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:380(cache_from_source)
+        2    0.000    0.000    0.000    0.000 {built-in method torch._C._nn._parse_to}
+        1    0.000    0.000    0.000    0.000 {built-in method torch.relu}
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:159(_path_isfile)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:936(__rpow__)
+        2    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+       10    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2278(children)
+       79    0.000    0.000    0.000    0.000 {method 'dim' of 'torch._C._TensorBase' objects}
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:150(_path_is_mode_type)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:391(cached)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/utils.py:9(parse)
+       12    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/coqpit/coqpit.py:624(__getattribute__)
+        4    0.000    0.000    0.000    0.000 {built-in method torch.linspace}
+        1    0.000    0.000    0.000    0.000 {method 'clamp' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:204(iterencode)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:179(_get_module_lock)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:722(__exit__)
+        1    0.000    0.000    0.000    0.000 {method 'item' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1488(_get_format_from_filename)
+       14    0.000    0.000    0.000    0.000 /usr/lib/python3.10/codecs.py:319(decode)
+      159    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_jit_internal.py:1109(is_scripting)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:510(_get_cached)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1181(close)
+        1    0.000    0.000    0.000    0.000 {built-in method io.open_code}
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:360(validate)
+      4/1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/configuration_utils.py:1015(dict_torch_dtype_to_str)
+        1    0.000    0.000    0.000    0.000 {method 't' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/functools.py:479(lru_cache)
+        2    0.000    0.000    0.000    0.000 {method 'reciprocal' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/tokenize.py:327(find_cookie)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:957(update)
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.empty}
+       23    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copy.py:243(_keep_alive)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:266(__exit__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/genericpath.py:27(isfile)
+        1    0.000    0.000    0.000    0.000 {built-in method io.open}
+       16    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/utils.py:33(_list_with_default)
+        1    0.000    0.000    0.000    0.000 {method 'new' of '_cffi_backend.FFI' objects}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:431(expand_symbols_multilingual)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:764(seek)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1368(_prepare_read)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:979(_get_logits_processor)
+        3    0.000    0.000    0.000    0.000 {method 'expand_as' of 'torch._C._TensorBase' objects}
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:257(__new__)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:182(__init__)
+       36    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:87(shape)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1154(convert)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:82(__exit__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1442(_check_mode)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:892(_get_logits_warper)
+       96    0.000    0.000    0.000    0.000 {built-in method _operator.index}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
+      106    0.000    0.000    0.000    0.000 {built-in method _json.encode_basestring_ascii}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.10/functools.py:35(update_wrapper)
+       10    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:2287(named_children)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/numpy/core/_dtype.py:314(_name_includes_bit_suffix)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1531(_get_spec)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:250(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:78(__enter__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/contextlib.py:252(contextmanager)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:816(_expand_dict_for_generation)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:275(add_axis)
+       14    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+      234    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method torch.from_numpy}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/gpt_inference.py:21(store_prefix_emb)
+       44    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method '__reduce_ex__' of 'object' objects}
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_jit_internal.py:1334(get_origin)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/numpy/core/numerictypes.py:356(issubdtype)
+        1    0.000    0.000    0.000    0.000 {method 'squeeze_' of 'torch._C._TensorBase' objects}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:132(_path_split)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/posixpath.py:117(splitext)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:100(acquire)
+        2    0.000    0.000    0.000    0.000 {method 'expand' of 'torch._C._TensorBase' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:216(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:721(spec_from_file_location)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1103(_get_stopping_criteria)
+       10    0.000    0.000    0.000    0.000 {built-in method torch._C._log_api_usage_once}
+        2    0.000    0.000    0.000    0.000 {built-in method torch.unsqueeze}
+       72    0.000    0.000    0.000    0.000 /usr/lib/python3.10/_collections_abc.py:409(__subclasshook__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/_backend/utils.py:106(dispatcher)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/functional/functional.py:428(_hz_to_mel)
+       33    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:244(_verbose_message)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_jit_internal.py:1342(check_args_exist)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/tokenize.py:321(read_or_stop)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:725(__setattr__)
+       68    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        5    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:259(_make_iterencode)
+       55    0.000    0.000    0.000    0.000 {function _ParameterMeta.__instancecheck__ at 0x7f3a84c9dd80}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/_tensor.py:964(__len__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:939(_get_generation_mode)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:416(<listcomp>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:585(_classify_pyc)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py:141(clone)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:71(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'read' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'readline' of '_io.BufferedReader' objects}
+       18    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:223(floatstr)
+       76    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3/dist-packages/pkg_resources/extern/__init__.py:57(find_spec)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/autograd/grad_mode.py:73(__init__)
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:547(collapse_whitespace)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:173(__exit__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1053(_handle_fromlist)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/opt_einsum/__init__.py:93(OptEinsumModule)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copyreg.py:109(_slotnames)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:805(tell)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/numpy/core/numerictypes.py:282(issubclass_)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_unpack_uint32)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:424(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:601(_prepare_model_inputs)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/_collections_abc.py:396(__subclasshook__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1294(_check_frames)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/codecs.py:309(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/warnings.py:403(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:676(<lambda>)
+       25    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/genericpath.py:121(_splitext)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:125(release)
+        8    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1356(_path_importer_cache)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1263(_validate_model_class)
+        4    0.000    0.000    0.000    0.000 {built-in method torch._C._set_grad_enabled}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1089(path_stats)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/tokenize.py:286(_get_normal_name)
+       18    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:28(_product)
+       18    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:408(<listcomp>)
+        8    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:897(__exit__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3/dist-packages/pkg_resources/extern/__init__.py:24(_module_matches_namespace)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:122(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/functional.py:2483(_verify_spatial_size)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:826(find_spec)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:696(<lambda>)
+        5    0.000    0.000    0.000    0.000 /usr/lib/python3.10/json/encoder.py:104(__init__)
+        8    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:893(__enter__)
+       18    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:204(<listcomp>)
+       10    0.000    0.000    0.000    0.000 {method '__subclasses__' of 'type' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/opt_einsum/__init__.py:94(__init__)
+       13    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:198(cb)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:618(_validate_timestamp_pyc)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1167(flush)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1285(_check_if_closed)
+        6    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:162(default)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py:1353(can_generate)
+       10    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py:1698(remove_from)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.10/_collections_abc.py:78(_check_methods)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/parsing.py:142(check_axis_name)
+        9    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:402(<setcomp>)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py:149(__new__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:746(find_spec)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:324(__init__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:357(__init__)
+       23    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:622(check_input_length)
+        8    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x5626d92779a0}
+       21    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+       14    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/perceiver_encoder.py:158(exists)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:498(__init__)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:389(<dictcomp>)
+        4    0.000    0.000    0.000    0.000 {built-in method math.log10}
+        6    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+       18    0.000    0.000    0.000    0.000 /usr/lib/python3.10/typing.py:1737(cast)
+       10    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:417(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/logging/__init__.py:1467(info)
+        1    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+        9    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:403(<setcomp>)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:976(<dictcomp>)
+        3    0.000    0.000    0.000    0.000 {method 'difference' of 'set' objects}
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:134(<genexpr>)
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:404(parent)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1512(_format_str)
+        2    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+       14    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py:44(forward)
+        1    0.000    0.000    0.000    0.000 {built-in method _codecs.lookup}
+       12    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/instancenorm.py:160(_check_input_dim)
+       21    0.000    0.000    0.000    0.000 {method 'isdecimal' of 'str' objects}
+        6    0.000    0.000    0.000    0.000 {built-in method torch.is_grad_enabled}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:542(_check_name_wrapper)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:180(_path_isabs)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/__init__.py:51(__init__)
+        5    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copy.py:264(<genexpr>)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:425(<dictcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:434(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py:302(_check_input_dim)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:165(__init__)
+       12    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:423(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1349(_validate_generated_length)
+       13    0.000    0.000    0.000    0.000 /usr/lib/python3.10/_collections_abc.py:315(__subclasshook__)
+       15    0.000    0.000    0.000    0.000 /usr/lib/python3.10/_collections_abc.py:381(__subclasshook__)
+        5    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:209(<dictcomp>)
+        4    0.000    0.000    0.000    0.000 {method 'discard' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/copyreg.py:100(__newobj__)
+        4    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:760(seekable)
+        1    0.000    0.000    0.000    0.000 {method 'sizeof' of '_cffi_backend.FFI' objects}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/_backends.py:223(is_appropriate_type)
+       10    0.000    0.000    0.000    0.000 {method 'index' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:318(<setcomp>)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/functools.py:65(wraps)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/six.py:194(find_spec)
+        8    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:694(<lambda>)
+        9    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/codecs.py:260(__init__)
+        2    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/numpy/core/_dtype.py:24(_kind_name)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1040(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'cast' of '_cffi_backend.FFI' objects}
+        7    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:71(_relax_case)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/logits_process.py:269(__init__)
+        4    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:1120(_merge_criteria_processor_list)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/integrations/deepspeed.py:256(is_deepspeed_zero3_enabled)
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:422(<listcomp>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:48(_new_module)
+        3    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.10/logging/__init__.py:1724(isEnabledFor)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/__init__.py:32(__init__)
+        2    0.000    0.000    0.000    0.000 {method 'symmetric_difference' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 {method 'seek' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'startswith' of 'bytes' objects}
+        4    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:716(__del__)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1481(<genexpr>)
+        6    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1404(_error_check)
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/stopping_criteria.py:61(__init__)
+        3    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+        4    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        2    0.000    0.000    0.000    0.000 {method 'issuperset' of 'set' objects}
+        2    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/einops/einops.py:435(<dictcomp>)
+        1    0.000    0.000    0.000    0.000 {method 'indices' of 'slice' objects}
+        4    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:1325(_check_dtype)
+        3    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'keys' of 'mappingproxy' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:621(<dictcomp>)
+        1    0.000    0.000    0.000    0.000 {built-in method math.gcd}
+        1    0.000    0.000    0.000    0.000 {method 'group' of 're.Match' objects}
+        1    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method math.ceil}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        2    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method sys.getfilesystemencoding}
+        1    0.000    0.000    0.000    0.000 /root/TTS/tts/layers/xtts/tokenizer.py:543(lowercase)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:673(<lambda>)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:671(<lambda>)
+        1    0.000    0.000    0.000    0.000 {method 'intersection' of 'set' objects}
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:667(<lambda>)
+        1    0.000    0.000    0.000    0.000 {method 'partition' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'get' of 'mappingproxy' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:719(__enter__)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/backends/opt_einsum/__init__.py:15(is_available)
+        1    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISREG}
+        1    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:412(has_location)
+        2    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torch/nn/modules/instancenorm.py:157(_get_no_batch_dim)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py:665(_maybe_initialize_input_ids_for_generation)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1065(get_filename)
+        1    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/torchaudio/_backend/soundfile.py:48(can_decode)
+        1    0.000    0.000    0.000    0.000 /usr/local/lib/python3.10/dist-packages/soundfile.py:669(<lambda>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:874(create_module)
+
+

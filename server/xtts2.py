@@ -16,8 +16,6 @@ class XTTS_v2:
             speaker_wav:str,
             language:str='en',
             file_path:str='output.wav') -> None:
-        with open(FILE_NAME, 'a') as f:
-            f.write(f'\n         > run "{text}"')
         wav = self.model.tts_to_file(text=text,
                                     file_path=file_path,
                                     speaker_wav=speaker_wav,
@@ -25,4 +23,3 @@ class XTTS_v2:
         sf.write(file=file_path,
                  data=wav,
                  samplerate=24000)
-        

@@ -37,7 +37,7 @@ class Synthesizer(nn.Module):
         vc_config: str = "",
         model_dir: str = "",
         voice_dir: str = None,
-        use_cuda: bool = False,
+        use_cuda: bool = True,
     ) -> None:
         """General 🐸 TTS interface for inference. It takes a tts and a vocoder
         model and synthesize speech from the provided text.
@@ -305,14 +305,14 @@ class Synthesizer(nn.Module):
 
         if text:
             sens = [text]
-            if split_sentences:
-                print(" > Text splitted to sentences.")
-                sens = self.split_into_sentences(text)
+            # if split_sentences:
+            #     print(" > Text splitted to sentences.")
+            #     sens = self.split_into_sentences(text)
             
-            for i, sen in enumerate(sens):
-                if sen[-1] in '.,!?;':
-                    sens[i] = sen[:-1]
-            print(sens)
+            # for i, sen in enumerate(sens):
+            #     if sen[-1] in '.,!?;':
+            #         sens[i] = sen[:-1]
+            # print(sens)
 
         # handle multi-speaker
         if "voice_dir" in kwargs:

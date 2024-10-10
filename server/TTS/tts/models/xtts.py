@@ -432,23 +432,42 @@ class Xtts(BaseTTS):
 
     @torch.inference_mode()
     def full_inference(
+        # self,
+        # text,
+        # ref_audio_path,
+        # language,
+        # # GPT inference
+        # temperature=0.65,
+        # length_penalty=1.0,
+        # repetition_penalty=10.0,
+        # top_k=50,
+        # top_p=0.85,
+        # do_sample=True,
+        # # Cloning
+        # gpt_cond_len=30,
+        # gpt_cond_chunk_len=6,
+        # max_ref_len=10,
+        # sound_norm_refs=False,
+        # **hf_generate_kwargs,
         self,
         text,
         ref_audio_path,
         language,
-        # GPT inference
-        temperature=0.75,
+        # Faster decoding parameters
+        temperature=0.8,
         length_penalty=1.0,
-        repetition_penalty=10.0,
-        top_k=50,
-        top_p=0.85,
-        do_sample=True,
-        # Cloning
-        gpt_cond_len=30,
-        gpt_cond_chunk_len=6,
-        max_ref_len=10,
+        repetition_penalty=2.0,
+        top_k=20,
+        top_p=0.7,
+        do_sample=False,  # Use greedy decoding
+        # Reduced conditioning length
+        gpt_cond_len=5,  # Reduced from 30
+        gpt_cond_chunk_len=5,  # Equal to gpt_cond_len to avoid chunking
+        max_ref_len=5,  # Reduced from 10
+        # Ensure sound normalization is disabled
         sound_norm_refs=False,
-        **hf_generate_kwargs,
+        # Any additional kwargs
+        **hf_generate_kwargs
     ):
         """
         This function produces an audio clip of the given text being spoken with the given reference voice.

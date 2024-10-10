@@ -239,6 +239,8 @@ class TTS(nn.Module):
         if not emotion is None and not speed is None:
             raise ValueError("Emotion and speed can only be used with Coqui Studio models. Which is discontinued.")
 
+    import time
+
     def tts(
         self,
         text: str,
@@ -275,9 +277,7 @@ class TTS(nn.Module):
             kwargs (dict, optional):
                 Additional arguments for the model.
         """
-        self._check_arguments(
-            speaker=speaker, language=language, speaker_wav=speaker_wav, emotion=emotion, speed=speed, **kwargs
-        )
+        
         wav = self.synthesizer.tts(
             text=text,
             speaker_name=speaker,
