@@ -380,26 +380,8 @@ class Xtts(BaseTTS):
             speaker_embedding = speaker_embedding.mean(dim=0)
 
         return gpt_cond_latents, speaker_embedding
-    
-    # SPEAKER FUNCS
-    def get_or_create_latents(self, 
-                              speaker_name, 
-                              audio_path,
-                            gpt_cond_len,
-                            gpt_cond_chunk_len,
-                            max_ref_length,
-                            sound_norm_refs):
-        if speaker_name not in self.latents_cache:
-            print(f"creating latents for {speaker_name}: {audio_path}")
-            gpt_cond_latent, speaker_embedding = self.get_conditioning_latents(audio_path=audio_path,
-                                                                                gpt_cond_len=gpt_cond_len,
-                                                                                gpt_cond_chunk_len=gpt_cond_chunk_len,
-                                                                                max_ref_length=max_ref_length,
-                                                                                sound_norm_refs=sound_norm_refs)
-            self.latents_cache[speaker_name] = (gpt_cond_latent, speaker_embedding)
-        return self.latents_cache[speaker_name]
 
-    def synthesize(self, text, config, speaker_name, speaker_wav, language, speaker_id=None, **kwargs):
+    def synthesize(self, text, config, speaker_wav, language, speaker_id=None, **kwargs):
         """Synthesize speech with the given input text.
 
         Args:
@@ -436,13 +418,14 @@ class Xtts(BaseTTS):
             "max_ref_len": config.max_ref_len,
             "sound_norm_refs": config.sound_norm_refs,
         })
-        return self.full_inference(text, speaker_name, speaker_wav, language, **settings)
+        return self.full_inference(text=text, 
+                                   ref_audio_path=speaker_wav, 
+                                   language=language, **settings)
 
     @torch.inference_mode()
     def full_inference(
         self,
         text,
-        speaker_name,
         ref_audio_path,
         language,
         # GPT inference
@@ -498,13 +481,12 @@ class Xtts(BaseTTS):
             Generated audio clip(s) as a torch tensor. Shape 1,S if k=1 else, (k,1,S) where S is the sample length.
             Sample rate is 24kHz.
         """
-        (gpt_cond_latent, speaker_embedding) = self.get_or_create_latents(speaker_name=speaker_name,
-                                                                        audio_path=ref_audio_path,
-                                                                        gpt_cond_len=gpt_cond_len,
-                                                                        gpt_cond_chunk_len=gpt_cond_chunk_len,
-                                                                        max_ref_length=max_ref_len,
-                                                                        sound_norm_refs=sound_norm_refs)
-
+        (gpt_cond_latent, speaker_embedding) = self.get_conditioning_latents(audio_path=ref_audio_path,
+                                                                            gpt_cond_len=gpt_cond_len,
+                                                                            gpt_cond_chunk_len=gpt_cond_chunk_len,
+                                                                            max_ref_length=max_ref_len,
+                                                                            sound_norm_refs=sound_norm_refs)
+        print('INREFERENCE STARTED')
         return self.inference(
             text,
             language,

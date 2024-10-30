@@ -1,1 +1,5 @@
-print(len('As the first stars appeared, a sense of peace washed over me, and I realized that sometimes, the simplest moments can bring the greatest joy'))
+from pydub import AudioSegment
+
+for i in range(15):
+    sound = AudioSegment.from_wav(f'res/{i}.wav')
+    sound.export(f'res/a{i}.mp3', format='mp3')

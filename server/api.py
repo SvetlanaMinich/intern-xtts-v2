@@ -238,7 +238,6 @@ class TTS(nn.Module):
         self,
         text: str,
         speaker: str = None,
-        speaker_name_cust:str = '',
         language: str = None,
         speaker_wav: str = None,
         speaker_embedding = None,
@@ -275,7 +274,6 @@ class TTS(nn.Module):
         wav = self.synthesizer.tts(
             text=text,
             speaker_name=speaker,
-            speaker_name_cust=speaker_name_cust,
             language_name=language,
             speaker_wav=speaker_wav,
             speaker_embedding=speaker_embedding,

@@ -1,41 +1,347 @@
 
- > Text splitted to sentences.
-['Painting the sky with hues of orange and pink']
- > Processing time: 2.3958401679992676
- > Real-time factor: 0.6591669458023539
-106902
- > Text splitted to sentences.
-['The gentle breeze carried the scent of the ocean']
- > Processing time: 2.8914432525634766
- > Real-time factor: 0.5621061126307012
-151276
- > Text splitted to sentences.
-['And the waves softly lapped against the shore']
- > Processing time: 2.524914026260376
- > Real-time factor: 0.6248244105656457
-118850
- > Text splitted to sentences.
-['It was the perfect evening']
- > Processing time: 2.373072624206543
- > Real-time factor: 0.6028369972782751
-115778
- > Text splitted to sentences.
-['One that seemed to hold infinite possibilities']
- > Processing time: 1.801523208618164
- > Real-time factor: 0.4061384217040582
-130454
- > Text splitted to sentences.
-['As the first stars appeared, a sense of peace washed over me']
- > Processing time: 2.4393861293792725
- > Real-time factor: 0.38977147936820983
-184044
- > Text splitted to sentences.
-['And I realized that sometimes, the simplest moments can bring the greatest joy']
- > Processing time: 2.722512722015381
- > Real-time factor: 0.40566146016082244
-197356
- > Text splitted to sentences.
-['Life felt calm and meaningful in that quiet, serene twilight']
- > Processing time: 2.353228807449341
- > Real-time factor: 0.3882489465181519
-178242
+WebSocket opened
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight., en
+     Task started: The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+WebSocket closed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+WebSocket opened
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight., en
+     Task started: The sun was setting over the horizon. Painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean. And the waves softly lapped against the shore. It was the perfect evening. One that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me. And I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight.
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+     > file .\Aaaaaaaaaaaaaaaaaaa1.wav removed
+    > Result 207894 sent to client Aaaaaaaaaaaaaaaaaaa1
+WebSocket closed
+WebSocket opened
+WebSocket opened
+WebSocket closed
+WebSocket closed
+WebSocket opened
+WebSocket opened
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Wer ist auch Zeuge?, de
+     Task started: Wer ist auch Zeuge?
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 133482 sent to client tAvH4RH5DDee53JBAAAD
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Dieser Gespräch ist für Sie und meine anderen, um mit Ihnen zu visualisieren., de
+     Task started: Dieser Gespräch ist für Sie und meine anderen, um mit Ihnen zu visualisieren.
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 188438 sent to client tAvH4RH5DDee53JBAAAD
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Wenn Sie es gefallen, bitte abonnieren., de
+     Task started: Wenn Sie es gefallen, bitte abonnieren.
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 163178 sent to client tAvH4RH5DDee53JBAAAD
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Für meine Väter, de
+     Task started: Für meine Väter
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 155670 sent to client tAvH4RH5DDee53JBAAAD
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Wir müssen darauf warten, dass die erste prä-staatische Präsentation des Universitätsprofessor., de
+     Task started: Wir müssen darauf warten, dass die erste prä-staatische Präsentation des Universitätsprofessor.
+
+    > CLIENT tAvH4RH5DDee53JBAAAD HERE
+    > Data from client tAvH4RH5DDee53JBAAAD received: Das Spiel ist für das Leben, oder?, de
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 236224 sent to client tAvH4RH5DDee53JBAAAD
+     Task started: Das Spiel ist für das Leben, oder?
+     > file .\tAvH4RH5DDee53JBAAAD.wav removed
+    > Result 170688 sent to client tAvH4RH5DDee53JBAAAD
+WebSocket closed
+WebSocket closed
+WebSocket opened
+WebSocket opened
+WebSocket opened
+WebSocket opened
+
+    > CLIENT cF5aQKkbXy8PYnXFAAAH HERE
+    > Data from client cF5aQKkbXy8PYnXFAAAH received: Eine visuelle Metaphor. Es war diese. Es war eine Festung auf Sand gebaut., de
+     Task started: Eine visuelle Metaphor. Es war diese. Es war eine Festung auf Sand gebaut.
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+
+    > CLIENT cF5aQKkbXy8PYnXFAAAH HERE
+    > Data from client cF5aQKkbXy8PYnXFAAAH received: Dieser Mann hat gerade alle meine 40 zusammengefasst., de
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+    > Result 180928 sent to client cF5aQKkbXy8PYnXFAAAH
+     Task started: Dieser Mann hat gerade alle meine 40 zusammengefasst.
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+    > Result 224278 sent to client cF5aQKkbXy8PYnXFAAAH
+
+    > CLIENT cF5aQKkbXy8PYnXFAAAH HERE
+    > Data from client cF5aQKkbXy8PYnXFAAAH received: Du bist, de
+     Task started: Du bist
+
+    > CLIENT cF5aQKkbXy8PYnXFAAAH HERE
+    > Data from client cF5aQKkbXy8PYnXFAAAH received: Ich bin so..., de
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+    > Result 112662 sent to client cF5aQKkbXy8PYnXFAAAH
+     Task started: Ich bin so...
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+    > Result 136554 sent to client cF5aQKkbXy8PYnXFAAAH
+
+    > CLIENT cF5aQKkbXy8PYnXFAAAH HERE
+    > Data from client cF5aQKkbXy8PYnXFAAAH received: Ein Kongress, de
+     Task started: Ein Kongress
+     > file .\cF5aQKkbXy8PYnXFAAAH.wav removed
+    > Result 163178 sent to client cF5aQKkbXy8PYnXFAAAH
+WebSocket closed
+WebSocket closed
+WebSocket closed
+WebSocket closed
+WebSocket opened
+WebSocket opened
+WebSocket opened
+WebSocket closed
+WebSocket closed
+WebSocket closed
+WebSocket opened
+WebSocket opened
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received:  It is the end of the world, en
+     Task started:  It is the end of the world
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 102422 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received:  businesses were having a hard time staying afloat., en
+     Task started:  businesses were having a hard time staying afloat.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 166250 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received:  to help get them through this trying time, en
+     Task started:  to help get them through this trying time
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 139626 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received:  He was, en
+     Task started:  He was
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 203456 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Quadratic Funding ist wirklich, wirklich neu., de
+     Task started: Quadratic Funding ist wirklich, wirklich neu.
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Es wurde von Glenn Weill und Microsoft erfunden., de
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 182634 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Es wurde von Glenn Weill und Microsoft erfunden.
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Das ist Alec Bearden der Assyrischen Stiftung., de
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 207894 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Das ist Alec Bearden der Assyrischen Stiftung.
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Und so können wir sehen, ob es wahr ist oder nicht., de
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 155670 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Und so können wir sehen, ob es wahr ist oder nicht.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 154304 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Im September 2018 haben sie die, de
+     Task started: Im September 2018 haben sie die
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 136554 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Wir werden eine neue Vision für eine mathematisch optimale Art und Weise haben, um Gemeinschaftsgüter zu betreiben., de
+     Task started: Wir werden eine neue Vision für eine mathematisch optimale Art und Weise haben, um Gemeinschaftsgüter zu betreiben.
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Ich werde dich in diesem Treffungsraum an einem Tag der Tagung bringen, de
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 247830 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Ich werde dich in diesem Treffungsraum an einem Tag der Tagung bringen
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Aber es ist nicht wie ein Patreon, wo Sie Abonnements verkaufen, de
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 240662 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Aber es ist nicht wie ein Patreon, wo Sie Abonnements verkaufen
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: И это не случай для, ru
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 179562 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: И это не случай для
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: В имя Господа Иисуса Христа., ru
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 79894 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: В имя Господа Иисуса Христа.
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Это новое признание Джеймса Бонда, ru
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 114368 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Это новое признание Джеймса Бонда
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 100714 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Вместо массовых взносов от ежедневных доноров., ru
+     Task started: Вместо массовых взносов от ежедневных доноров.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 112662 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Это математическая формула, которая приводит к более справедливому распределению средств., ru
+     Task started: Это математическая формула, которая приводит к более справедливому распределению средств.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 185706 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Но он действительно мощный, и я просто буду играть довольно cool, ru
+     Task started: Но он действительно мощный, и я просто буду играть довольно cool
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Это конец игры., ru
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 167616 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Это конец игры.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 63850 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Сладкий !, ru
+     Task started: Сладкий !
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 41322 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Соглашение увеличивает объем финансирования для стимулирования нашего сообщества, ru
+     Task started: Соглашение увеличивает объем финансирования для стимулирования нашего сообщества
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Это может быть небольшое уклонение в фист, который хочет вернуться, ru
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 164886 sent to client n2RPoIrUNZdhoSNHAAAB
+     Task started: Это может быть небольшое уклонение в фист, который хочет вернуться
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 137920 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: или городского лидера, который должен, ru
+     Task started: или городского лидера, который должен
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 84330 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Смотрите это в нашем восстановлении, ru
+     Task started: Смотрите это в нашем восстановлении
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 103786 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Во-вторых, проект подписки на кампанию crowdfunding., ru
+     Task started: Во-вторых, проект подписки на кампанию crowdfunding.
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 139626 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Несколько местных компаний, которые сидят на этом, ru
+     Task started: Несколько местных компаний, которые сидят на этом
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 125974 sent to client n2RPoIrUNZdhoSNHAAAB
+
+    > CLIENT n2RPoIrUNZdhoSNHAAAB HERE
+    > Data from client n2RPoIrUNZdhoSNHAAAB received: Я не позволяю вам уйти с этим, ru
+     Task started: Я не позволяю вам уйти с этим
+     > file .\n2RPoIrUNZdhoSNHAAAB.wav removed
+    > Result 74090 sent to client n2RPoIrUNZdhoSNHAAAB
+WebSocket closed
+WebSocket closed
+WebSocket opened
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The sun was setting over the horizon., en
+    > Results sent to client Aaaaaaaaaaaaaaaaaaa1
+     Task started: The sun was setting over the horizon.
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: Painting the sky with hues of orange and pink., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The gentle breeze carried the scent of the ocean., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: And the waves softly lapped against the shore., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: It was the perfect evening., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: One that seemed to hold infinite possibilities., en
+WebSocket opened
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The sun was setting over the horizon., en
+    > Results sent to client Aaaaaaaaaaaaaaaaaaa1
+     Task started: The sun was setting over the horizon.
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: Painting the sky with hues of orange and pink., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The gentle breeze carried the scent of the ocean., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: And the waves softly lapped against the shore., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: It was the perfect evening., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: One that seemed to hold infinite possibilities., en
+WebSocket closed
+WebSocket opened
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The sun was setting over the horizon., en
+    > Results sent to client Aaaaaaaaaaaaaaaaaaa1
+     Task started: The sun was setting over the horizon.
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: Painting the sky with hues of orange and pink., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: The gentle breeze carried the scent of the ocean., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: And the waves softly lapped against the shore., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: One that seemed to hold infinite possibilities., en
+
+    > CLIENT Aaaaaaaaaaaaaaaaaaa1 HERE
+    > Data from client Aaaaaaaaaaaaaaaaaaa1 received: It was the perfect evening., en
+WebSocket closed

@@ -8,6 +8,21 @@ C:\Users\imsve\.dstack\server\config.yml
 
 run dstack.yaml with "dstack run run-on-vastai"
 
+1.⁠ ⁠Afghanistan (Dari, Pashto)
+ 3.⁠ ⁠Bangladesh (Bengali)
+ 4.⁠ ⁠Burmese
+ 5.⁠ ⁠Urdu
+ 8.⁠ ⁠Finnish
+
+10.⁠ ⁠Hebrew
+11.⁠ ⁠Hindi
+12.⁠ ⁠Indonesia (Bahasa Indonesia)
+
+14.⁠ ⁠Kannada
+15.⁠ ⁠Maori
+16.⁠ ⁠Malay
+17.⁠ ⁠Norwegian
+
 {
   "Arabic": "ar",
   "Chinese": "zh-cn",
@@ -26,6 +41,15 @@ run dstack.yaml with "dstack run run-on-vastai"
   "Spanish": "es",
   "Turkish": "tr"
 }
+
+
+MMS:
+English            eng
+Urdu (script arab) urd
+Arabic             ara
+German             deu
+Russian            rus
+Hindi              hin
 
 
 
@@ -138,3 +162,26 @@ C:\intern\xtts-2\voice_samples\Usachev 10.mp3
     big_text_en = "The sun was setting over the horizon, painting the sky with hues of orange and pink. The gentle breeze carried the scent of the ocean, and the waves softly lapped against the shore. It was the perfect evening, one that seemed to hold infinite possibilities. As the first stars appeared, a sense of peace washed over me, and I realized that sometimes, the simplest moments can bring the greatest joy. Life felt calm and meaningful in that quiet, serene twilight."
     big_text_ru = "Солнце заходило за горизонт, окрашивая небо в оттенки оранжевого и розового. Лёгкий ветерок приносил аромат моря, а волны мягко омывали берег. Это был идеальный вечер, казалось, он хранил в себе бесконечные возможности. Когда появились первые звезды, на меня нахлынуло чувство умиротворения, и я осознал, что иногда самые простые моменты могут принести наибольшую радость. Жизнь казалась спокойной и значимой в этом тихом, безмятежном сумраке." 
 
+**Installing xtts-v2 with deepspeed**
+1. *INSTALLING PYTHON 3.10:*
+2. sudo apt update
+3. sudo apt install software-properties-common -y
+4. sudo add-apt-repository ppa:deadsnakes/ppa
+5. sudo apt update
+6. sudo apt install python3.10 python3.10-venv python3.10-dev
+7. **MAKE VENV WITH PYTHON 3.10**
+8. python3.10 -m venv xtts-venv
+9. source xtts-venv/bin/activate
+10. git clone https://github.com/coqui-ai/TTS
+10. cd TTS
+11. pip install -U numpy==1.22.0 and so on
+12. pip install deepspeed
+
+**error:**
+Cython.Compiler.Errors.CompileError: spacy/kb.pyx
+**solution:**
+sudo apt-get install build-essential
+pip install --upgrade cython
+pip install -U spacy[ja]
+
+pip install -U torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124

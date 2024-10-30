@@ -1,0 +1,57 @@
+# core deps
+numpy==1.22.0;python_version<="3.10" ++
+pip install -U cython==0.29.30 ++
+pip install -U scipy==1.11.2 ++
+pip install -U torch==2.1 ++
+torchaudio ++
+pip install -U soundfile==0.12.1 ++
+pip install -U librosa==0.10.0 ++
+pip install -U scikit-learn==1.3.0 ++
+pip install -U numba==0.57.0 ++
+pip install -U inflect==5.6.0 ++
+pip install -U tqdm==4.64.1 ++
+pip install -U anyascii==0.3.0 ++
+pip install -U pyyaml==6.0 ++
+pip install -U fsspec==2023.6.0 + # <= 2023.9.1 makes aux tests fail
+pip install -U aiohttp==3.8.1 +
+pip install -U packaging==23.1 +
+pip install -U mutagen==1.47.0 +
+# deps for examples
+pip install -U flask==2.0.1 +
+# deps for inference
+pip install -U pysbd==0.3.4 +
+# deps for notebooks
+pip install -U umap-learn==0.5.1 +
+pip install -U  pandas==1.4 +
+# deps for training
+pip install -U matplotlib==3.7.0 +
+# coqui stack
+pip install -U trainer==0.0.36 +
+# config management
+pip install -U coqpit==0.0.16 +
+pip install -U contourpy==1.2.1
+pip install -U numpy==1.22.0
+# chinese g2p deps
+jieba +
+pypinyin +
+# korean
+hangul_romanize +
+# gruut+supported langs
+gruut[de,es,fr]==2.2.3 +
+# deps for korean
+jamo +
+nltk +
+pip install -U g2pkk==0.1.2 ++
+# deps for bangla
+bangla +
+bnnumerizer +
+bnunicodenormalizer +
+#deps for tortoise
+pip install -U einops==0.6.0 +
+pip install -U transformers==4.33.0 ++
+#deps for bark
+pip install -U encodec==0.1.1 +
+# deps for XTTS
+pip install -U unidecode==1.3.2 +
+num2words +
+pip install -U spacy[ja]==3

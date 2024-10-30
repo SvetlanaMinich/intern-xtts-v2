@@ -1,0 +1,4 @@
+pydub
+socketify # apt install libuv1 zlib1g
+soundfile 
+aiofiles

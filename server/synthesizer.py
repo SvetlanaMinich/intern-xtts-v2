@@ -258,7 +258,6 @@ class Synthesizer(nn.Module):
         self,
         text: str = "",
         speaker_name: str = "",
-        speaker_name_cust:str="",
         language_name: str = "",
         speaker_wav=None,
         speaker_embedding=None,
@@ -381,7 +380,6 @@ class Synthesizer(nn.Module):
             vocoder_device = next(self.vocoder_model.parameters()).device
         if self.use_cuda:
             vocoder_device = "cuda"
-        print('VOCODER DEVICE: ', vocoder_device)
 
         if not reference_wav:  # not voice conversion
             if hasattr(self.tts_model, "synthesize"):
@@ -389,7 +387,6 @@ class Synthesizer(nn.Module):
                     outputs = self.tts_model.synthesize(
                         text=text,
                         config=self.tts_config,
-                        speaker_name=speaker_name_cust,
                         speaker_id=speaker_name,
                         voice_dirs=self.voice_dir,
                         d_vector=speaker_embedding,

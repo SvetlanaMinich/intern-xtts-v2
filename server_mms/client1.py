@@ -1,17 +1,17 @@
 import asyncio
 import json
+import io
 
 from websockets import connect
-from AudioConverter_cl import AudioConverter
 
 import soundfile as sf
 
 BYTEORDER = 'little'
 FIXED_RESULT_LEN = 4
-HOST = '172.81.127.5' # 172.81.127.5:64139 -> 8081/tcp
-PORT = 64139
+HOST = '172.81.127.5' # 172.81.127.5:64207 -> 8081/tcp
+PORT = 64207
 
-RESULT_PATH = 'C:/intern/xtts-2/client/res/res.wav'
+RESULT_PATH = 'C:/intern/xtts-2/server_mms/res/res.wav'
 
 
 def make_additional_headers(id:int,
@@ -22,37 +22,69 @@ def make_additional_headers(id:int,
     desc_headers - [description headers like {'Type': , 'Encoding': , 'Length': , 'Language': }],
     '''
     desc_header = {
-        'Client_id': id,
-        'Text': text,
-        'Language': language
+        'ClientId': id,
+        'Text': text.lower()[:-1],
+        'Language': language,
+        'RequestId': id
     }
 
     return desc_header
 
 
 async def run_client():
-    s_conv = AudioConverter()
     async with connect(f'ws://{HOST}:{PORT}/') as ws:
-        client_id = "Aaaaaaaaaaaaaaaaaaa2"
-        text = 'The sun was just beginning to rise, casting a warm golden glow across the horizon. Birds chirped happily, welcoming the new day with their melodic songs. In the distance, a gentle breeze rustled the leaves of the tall trees. The streets were quiet, with only a few early risers going about their morning routines. A cat stretched lazily on the windowsill, basking in the soft sunlight. The smell of freshly brewed coffee wafted through the air, promising a comforting start to the day. Across the park, joggers moved in a rhythmic pace, their breaths visible in the cool morning air. Children’s laughter echoed faintly as they played by the swings. Nearby, a dog chased after a butterfly, its tail wagging excitedly. The morning was peaceful, and it felt like a perfect beginning to a productive day.'
-        lang = 'eng'
-        desc_header = make_additional_headers(client_id, text, lang)
-        data = json.dumps(desc_header).encode('utf-8')
-        print(data)
-        await ws.send(data)
-
         
-        num = 0
-        while num < 10:
-            chunk = await ws.recv()
-            print(f'received chunk №{num}: {len(chunk)}')
-            _ = s_conv.bytes_to_wav(chunk, 
-                                path_to_res=RESULT_PATH[:-4] + f'{num}.wav')
-            _ = s_conv.wav_to_mp3(path_to_wav_file=RESULT_PATH[:-4] + f'{num}.wav', 
-                                path_to_res_mp3_file=RESULT_PATH[:-4] + f'{num}.mp3')
-            f_info = sf.info(RESULT_PATH[:-4] + f'{num}.wav')
-            print(f'> format: {f_info.subtype_info}, samplerate: {f_info.samplerate}')
-            num += 1
+        en_test = ['A small man in a holey yellow bowler hat and a pear-shaped crimson nose.',
+    # 'In checkered trousers and patent leather boots rode onto the stage on an ordinary two-wheeled bicycle.',
+    # 'He made a circle to the sound of a foxtrot.', 
+    # 'And then let out a triumphant cry, causing the bicycle to rear up.',
+    # 'Having ridden on one rear wheel, the man turned upside down.', 
+    # 'Managed to unscrew the front wheel while moving and let it go behind the scenes.',
+    # 'And then continued on one wheel, turning the pedals with his hands.',
+    # "On a tall metal pole with a saddle on top,",
+    # "a full blonde in tights rode out with one wheel.",
+    # "Her skirt was studded with silver stars.",
+    # "She started riding in circles around the arena.",
+    # "The man greeted her with loud shouts.",
+    # "With his foot, he knocked off his hat when meeting.",
+    # "Finally, a little boy around eight years old rode out.",
+    # "He had an old man’s face and a tiny bike.",
+    # "The bike had a big car horn attached to it.",
+    # "The boy weaved between adults on the stage.",
+    # "Under the drumroll, they approached the stage edge.",
+    # "The audience gasped and leaned back in fear.",
+    # "They thought all three would fall into the orchestra.",
+    ]
+        client_id = "Aaaaaaaaaaaaaaaaaaa1"
+        lang = 'eng'
+        for i in en_test:
+            desc_header = make_additional_headers(client_id, i, lang)
+            data = json.dumps(desc_header).encode('utf-8')
+            print(data)
+            await ws.send(data)
+        
+        ch = await ws.recv()
+        ch = json.loads(ch)
+        print(ch['Audio'])
+            
+            # wav_bytes = io.BytesIO(ch)
+
+            # audio_data, sample_rate = sf.read(wav_bytes)
+
+            # sf.write(f'output{i}.wav', audio_data, sample_rate)
+            # print(f'received {i}')
+        
+        # chunk = await ws.recv()
+        # print(f'received {len(chunk)} bytes')
+
+        # text = 'det er en meget dejlig dag'
+        # desc_header = make_additional_headers(client_id, text, 'nld')
+        # data = json.dumps(desc_header).encode('utf-8')
+        # print(data)
+        # await ws.send(data)
+
+        # chunk = await ws.recv()
+        # print(f'received {len(chunk)} bytes')
 
         await ws.close()
 

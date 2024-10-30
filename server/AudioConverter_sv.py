@@ -41,7 +41,7 @@ class AudioConverter:
         return res_path
 
 
-    def wav24_to_wav16(self, path_to_wav:str) -> str:
+    def wav22_to_wav16(self, path_to_wav:str) -> str:
         wav_audio = AudioSegment.from_file(path_to_wav)
         wav_audio = wav_audio.set_frame_rate(16_000)
         wav_audio = wav_audio.set_sample_width(2)
